@@ -1,0 +1,119 @@
+<!--meta
+{
+  "title": "Courier &amp; Parcel Delivery Services | Sudi-Post",
+  "desc": "Domestic, international, express, door-to-door, document, parcel, e-commerce, business logistics and student package delivery services from Sudi-Post, South Sudan.",
+  "out": "services.html",
+  "scripts": ["assets/js/services.js"]
+}
+meta-->
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li aria-current="page">Services</li>
+      </ol>
+    </nav>
+    <div class="page-hero__inner">
+      <span class="eyebrow eyebrow--invert">Our Services</span>
+      <h1 style="margin-top:var(--sp-3)">Every delivery need, under one roof</h1>
+      <p class="lead mt-4">Nine services built around how people actually send things — a letter across Juba,
+         a support parcel to a student in Addis Ababa, or a pallet of goods for a business that needs it
+         delivered on a schedule.</p>
+      <div class="page-hero__meta">
+        <span><i data-icon="map-pin"></i> Nationwide coverage</span>
+        <span><i data-icon="globe"></i> 4 international destinations</span>
+        <span><i data-icon="zap"></i> Express available</span>
+      </div>
+      <div class="flex flex-wrap gap-3 mt-6">
+        <a class="btn btn--gold" href="send.html"><i data-icon="send"></i>Send a Package</a>
+        <a class="btn btn--outline" href="rates.html"><i data-icon="percent"></i>Calculate Shipping Cost</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE INDEX GRID -->
+<section class="section">
+  <div class="container">
+    <div class="heading-group heading-group--center">
+      <span class="eyebrow">Choose a service</span>
+      <h2 class="section-title">What would you like to send?</h2>
+      <p class="section-sub">Tap any service for full details, transit times and what is included.</p>
+    </div>
+    <div class="grid grid--auto mt-7" id="serviceIndex"></div>
+  </div>
+</section>
+
+<!-- DETAIL SECTIONS (rendered from the shared service catalogue) -->
+<div id="serviceDetails"></div>
+
+<!-- PROCESS -->
+<section class="section section--navy" aria-labelledby="svc-process-h">
+  <div class="container">
+    <div class="heading-group heading-group--center">
+      <span class="eyebrow eyebrow--invert">How it works</span>
+      <h2 class="section-title" id="svc-process-h">Four steps, no surprises</h2>
+      <p class="section-sub">Every shipment follows the same controlled path, whichever service you choose.</p>
+    </div>
+    <div class="steps mt-7" id="serviceProcess" style="--navy:1"></div>
+    <div class="text-center mt-7">
+      <a class="btn btn--gold btn--lg" href="send.html"><i data-icon="send"></i>Start a shipment</a>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="section" aria-labelledby="svc-compare-h">
+  <div class="container">
+    <div class="heading-group heading-group--center">
+      <span class="eyebrow">Compare</span>
+      <h2 class="section-title" id="svc-compare-h">Which service fits?</h2>
+    </div>
+    <div class="table-wrap mt-6">
+      <table class="table">
+        <caption class="visually-hidden">Comparison of Sudi-Post services, transit times and best uses</caption>
+        <thead>
+          <tr>
+            <th scope="col">Service</th>
+            <th scope="col">Typical transit</th>
+            <th scope="col">Best for</th>
+            <th scope="col">Tracking</th>
+            <th scope="col">Proof of delivery</th>
+            <th scope="col">Book</th>
+          </tr>
+        </thead>
+        <tbody id="compareBody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section--soft" aria-labelledby="svc-faq-h">
+  <div class="container container--narrow">
+    <div class="heading-group heading-group--center">
+      <span class="eyebrow">Questions</span>
+      <h2 class="section-title" id="svc-faq-h">Service questions</h2>
+    </div>
+    <div class="accordion mt-6" id="serviceFaq"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <div>
+      <span class="eyebrow eyebrow--invert">Let's move it</span>
+      <h2 style="margin-top:var(--sp-3)">Book a pickup or drop off today</h2>
+      <p>Free pickup within Juba. Instant tracking reference. Proof of delivery on every shipment.</p>
+    </div>
+    <div class="cta-band__actions">
+      <a class="btn btn--gold btn--lg" href="send.html"><i data-icon="send"></i>Send a Package</a>
+      <a class="btn btn--invert btn--lg" href="rates.html"><i data-icon="percent"></i>Calculate Shipping Cost</a>
+      <a class="btn btn--outline-invert btn--lg" href="locations.html"><i data-icon="map-pin"></i>Find a Location</a>
+    </div>
+  </div>
+</section>

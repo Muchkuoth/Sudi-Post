@@ -1,0 +1,78 @@
+<!--meta
+{
+  "title": "Login | Sudi-Post Customer Portal",
+  "desc": "Sign in to the Sudi-Post customer portal to track shipments, book pickups, download invoices and manage delivery addresses. Customer, admin and driver demo logins available.",
+  "out": "login.html",
+  "scripts": ["assets/js/auth.js"]
+}
+meta-->
+
+<div class="auth">
+  <!-- marketing panel -->
+  <aside class="auth__aside">
+    <span class="eyebrow eyebrow--invert">Sudi-Post Portal</span>
+    <h2 style="margin-top:var(--sp-3)">Everything about your deliveries, in one place</h2>
+    <p>Track every shipment, book a pickup, download invoices and manage your saved addresses —
+       without phoning the branch to ask.</p>
+    <ul class="auth__list" id="loginBenefits"></ul>
+    <blockquote class="auth__quote" id="loginQuote"></blockquote>
+  </aside>
+
+  <!-- form panel -->
+  <div class="auth__main">
+    <div class="auth__form">
+      <h1>Welcome back</h1>
+      <p>Sign in to your Sudi-Post account.</p>
+
+      <div id="loginAlert" hidden></div>
+
+      <form class="form mt-5" id="loginForm" novalidate>
+        <div class="field">
+          <label class="label" for="lEmail">Email address <span class="req">*</span></label>
+          <div class="input-group">
+            <i data-icon="mail"></i>
+            <input class="input" type="email" id="lEmail" name="email" autocomplete="email"
+                   placeholder="you@example.com" data-rules="required|email" aria-describedby="lEmailErr">
+          </div>
+          <div class="field-error" id="lEmailErr"></div>
+        </div>
+
+        <div class="field mt-4">
+          <label class="label" for="lPassword">Password <span class="req">*</span></label>
+          <div class="input-group input-group--suffix">
+            <i data-icon="lock"></i>
+            <input class="input" type="password" id="lPassword" name="password" autocomplete="current-password"
+                   placeholder="Your password" data-rules="required|minlen:6" aria-describedby="lPasswordErr">
+            <button class="input-group__suffix" type="button" data-toggle-pass="lPassword" aria-label="Show password">
+              <i data-icon="eye"></i>
+            </button>
+          </div>
+          <div class="field-error" id="lPasswordErr"></div>
+        </div>
+
+        <div class="flex items-center justify-between gap-3 mt-4" style="flex-wrap:wrap">
+          <label class="check">
+            <input type="checkbox" name="remember" checked><span>Keep me signed in</span>
+          </label>
+          <button class="link-arrow" type="button" id="forgotBtn">Forgot password?</button>
+        </div>
+
+        <button class="btn btn--gold btn--block btn--lg mt-5" type="submit">
+          <i data-icon="login"></i>Sign in
+        </button>
+      </form>
+
+      <div class="auth__divider">or use a demo account</div>
+
+      <div class="demo-accounts">
+        <h4>Demo logins</h4>
+        <p class="text-xs text-muted">Demo data is stored only in this browser. Nothing is sent anywhere.</p>
+      </div>
+
+      <p class="auth__foot">
+        New to Sudi-Post? <a class="link-arrow" href="register.html">Create an account</a><br>
+        Just want to check a parcel? <a class="link-arrow" href="track.html">Track without signing in</a>
+      </p>
+    </div>
+  </div>
+</div>

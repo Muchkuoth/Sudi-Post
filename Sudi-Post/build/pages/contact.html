@@ -1,0 +1,170 @@
+<!--meta
+{
+  "title": "Contact Sudi-Post | Juba &amp; Addis Ababa Offices",
+  "desc": "Contact Sudi-Post for quotes, support and partnerships. Call, email, WhatsApp or visit our Juba head office and Addis Ababa branch. Support replies within one business day.",
+  "out": "contact.html",
+  "scripts": ["assets/js/contact.js"]
+}
+meta-->
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li aria-current="page">Contact</li>
+      </ol>
+    </nav>
+    <div class="page-hero__inner">
+      <span class="eyebrow eyebrow--invert">Contact Us</span>
+      <h1 style="margin-top:var(--sp-3)">Talk to a real person</h1>
+      <p class="lead mt-4">Quotes, support, partnerships or a parcel that needs chasing — our team in Juba
+         answers within one business day, and our WhatsApp line is open seven days a week.</p>
+      <div class="page-hero__meta">
+        <span><i data-icon="phone"></i> +211 927 100 141</span>
+        <span><i data-icon="whatsapp"></i> WhatsApp 08:00–20:00</span>
+        <span><i data-icon="mail"></i> info@sudipost.com</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK CONTACT -->
+<section class="section section--tight">
+  <div class="container">
+    <div class="grid grid--4" id="contactCards"></div>
+  </div>
+</section>
+
+<!-- FORM + INFO -->
+<section class="section section--tight">
+  <div class="container">
+    <div class="contact-layout">
+      <form class="formset" id="contactForm" novalidate>
+        <div class="formset__legend" style="margin-bottom:var(--sp-5)">
+          <span class="formset__num"><i data-icon="message"></i></span>
+          <div>
+            <div class="formset__title">Send us a message</div>
+            <div class="formset__hint">Fields marked <span class="req">*</span> are required.</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="label">What is this about? <span class="req">*</span></span>
+          <div class="chip-row" id="topicChips" role="radiogroup" aria-label="Topic"></div>
+          <input type="hidden" name="topic" id="topicValue" data-rules="required" aria-describedby="topicErr">
+          <div class="field-error" id="topicErr"></div>
+        </div>
+
+        <div class="form-grid mt-5">
+          <div class="field">
+            <label class="label" for="kName">Your name <span class="req">*</span></label>
+            <input class="input" type="text" id="kName" name="name" autocomplete="name" data-rules="required" aria-describedby="kNameErr">
+            <div class="field-error" id="kNameErr"></div>
+          </div>
+          <div class="field">
+            <label class="label" for="kEmail">Email <span class="req">*</span></label>
+            <input class="input" type="email" id="kEmail" name="email" autocomplete="email" data-rules="required|email" aria-describedby="kEmailErr">
+            <div class="field-error" id="kEmailErr"></div>
+          </div>
+          <div class="field">
+            <label class="label" for="kPhone">Phone <span class="opt">recommended</span></label>
+            <input class="input" type="tel" id="kPhone" name="phone" autocomplete="tel" data-rules="phone" aria-describedby="kPhoneErr">
+            <div class="field-error" id="kPhoneErr"></div>
+            <p class="field-hint">Faster to resolve questions by phone.</p>
+          </div>
+          <div class="field">
+            <label class="label" for="kTracking">Tracking number <span class="opt">if about a parcel</span></label>
+            <input class="input" type="text" id="kTracking" name="tracking" placeholder="SUD-2026-000125" data-rules="pattern:SUD">
+            <div class="field-error" id="kTrackingErr"></div>
+          </div>
+          <div class="field span-2">
+            <label class="label" for="kMessage">Message <span class="req">*</span></label>
+            <textarea class="input" id="kMessage" name="message" rows="5" data-rules="required|minlen:15"
+                      placeholder="Tell us what you need — routes, weight, volume, how often you would send, and your timeline."
+                      aria-describedby="kMessageErr kCount"></textarea>
+            <div class="field-error" id="kMessageErr"></div>
+            <p class="field-hint" id="kCount">0 characters · minimum 15</p>
+          </div>
+        </div>
+
+        <div class="check mt-5">
+          <input type="checkbox" id="kConsent" name="consent" data-rules="required" aria-describedby="kConsentErr">
+          <span>I agree that Sudi-Post may contact me about this enquiry. <span id="kConsentErr" class="field-error is-inline"></span></span>
+        </div>
+
+        <div class="flex flex-wrap gap-3 mt-6">
+          <button class="btn btn--gold btn--lg" type="submit"><i data-icon="send"></i>Send message</button>
+          <a class="btn btn--outline btn--lg" id="waContact" href="#" target="_blank" rel="noopener"><i data-icon="whatsapp"></i>Chat on WhatsApp</a>
+        </div>
+      </form>
+
+      <aside class="contact-side">
+        <div class="card card--pad">
+          <h2 style="font-size:var(--fs-lg)">Head office — Juba</h2>
+          <p class="text-sm text-muted mt-1">Registered office and main processing hub.</p>
+          <ul class="contact-list mt-4">
+            <li><i data-icon="map-pin"></i><span><strong>Address</strong><br>Malakia Road<br>Juba Central, South Sudan 11111</span></li>
+            <li><i data-icon="phone"></i><span><strong>Phone</strong><br><a href="tel:+211927100141">+211 927 100 141</a></span></li>
+            <li><i data-icon="whatsapp"></i><span><strong>WhatsApp</strong><br><a href="#" data-wa>Chat with support</a></span></li>
+            <li><i data-icon="mail"></i><span><strong>Email</strong><br><a href="mailto:info@sudipost.com">info@sudipost.com</a></span></li>
+          </ul>
+        </div>
+
+        <div class="card card--pad">
+          <h2 style="font-size:var(--fs-lg)">Branch — Addis Ababa</h2>
+          <p class="text-sm text-muted mt-1">Ethiopia hub for the Juba ⇄ Addis corridor.</p>
+          <ul class="contact-list mt-4">
+            <li><i data-icon="map-pin"></i><span><strong>Address</strong><br>Bole Sub-City, Woreda 03, House 214<br>Addis Ababa, Ethiopia 1000</span></li>
+            <li><i data-icon="phone"></i><span><strong>Phone</strong><br><a href="tel:+251989407436">+251 989 407 436</a></span></li>
+            <li><i data-icon="mail"></i><span><strong>Email</strong><br><a href="mailto:addis@sudipost.com">addis@sudipost.com</a></span></li>
+          </ul>
+        </div>
+
+        <div class="card card--pad">
+          <h2 style="font-size:var(--fs-lg)">Opening hours</h2>
+          <div class="loc-hours mt-3" id="brandHours"></div>
+          <p class="text-xs text-muted mt-3">Juba and Addis are 1 hour apart, so our corridor team overlaps all day.</p>
+        </div>
+
+        <div class="card card--pad card--soft">
+          <h2 style="font-size:var(--fs-md)">Departments</h2>
+          <ul class="contact-list mt-3" id="deptList"></ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- FIND US — the network map lives on the Locations page -->
+<section class="section section--soft" aria-labelledby="contact-map-h">
+  <div class="container container--narrow">
+    <div class="heading-group heading-group--center">
+      <span class="eyebrow">Find us</span>
+      <h2 class="section-title" id="contact-map-h">Offices and network</h2>
+      <p class="section-sub">Head office in Juba, regional hub in Addis Ababa, and branches across South Sudan.</p>
+    </div>
+    <div class="findus-card">
+      <div class="findus-card__body">
+        <span class="findus-card__icon"><i data-icon="map-pin"></i></span>
+        <div>
+          <h3 class="findus-card__title">Every branch, hub and pickup point</h3>
+          <p class="findus-card__text">Search the full network by city, get opening hours, phone numbers and directions for your nearest Sudi-Post location.</p>
+        </div>
+      </div>
+      <a class="btn btn--primary" href="locations.html"><i data-icon="navigation"></i>Browse all locations</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" aria-labelledby="contact-faq-h">
+  <div class="container container--narrow">
+    <div class="heading-group heading-group--center">
+      <span class="eyebrow">Before you write</span>
+      <h2 class="section-title" id="contact-faq-h">Quick answers</h2>
+    </div>
+    <div class="accordion mt-6" id="contactFaq"></div>
+  </div>
+</section>

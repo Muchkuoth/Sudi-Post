@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
+<title>My Account | Sudi-Post Customer Portal</title>
+<meta name="description" content="Manage your Sudi-Post account: track shipments, request pickups, download invoices, save delivery addresses and manage notification preferences.">
+<meta name="author" content="Sudi-Post">
+<meta name="theme-color" content="#3B4626">
+<link rel="canonical" href="https://www.sudipost.com/account.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sudi-Post">
+<meta property="og:title" content="My Account | Sudi-Post Customer Portal">
+<meta property="og:description" content="Manage your Sudi-Post account: track shipments, request pickups, download invoices, save delivery addresses and manage notification preferences.">
+<meta property="og:url" content="https://www.sudipost.com/account.html">
+<meta property="og:image" content="assets/img/logo.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/logo.jpg" type="image/jpeg">
+<link rel="apple-touch-icon" href="assets/img/logo.jpg">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<meta name="robots" content="noindex, nofollow">
+<script>document.documentElement.className += " js";</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+
+
+<main id="main">
+<!-- SIGNED-OUT GATE -->
+<div class="empty-state" id="acGate" hidden>
+  <span class="empty-state__icon"><i data-icon="lock"></i></span>
+  <h1>Sign in to view your account</h1>
+  <p>Your shipments, invoices and saved addresses are held against your account, so we need to know who you are.</p>
+  <a class="btn btn--gold btn--lg" href="login.html?next=account.html"><i data-icon="login"></i>Sign in</a>
+  <a class="btn btn--outline btn--lg" href="register.html"><i data-icon="user-plus"></i>Create an account</a>
+  <p class="text-sm text-muted mt-5">Or <a class="link-arrow" href="track.html">track a parcel without signing in</a>.</p>
+</div>
+
+<!-- ACCOUNT APP -->
+<div class="app" id="acApp" hidden>
+  <aside class="app__sidebar" id="acSidebar">
+    <div class="app__brand">
+      <a class="brand__name" href="index.html">SUDI-POST</a>
+    </div>
+    <nav class="app__nav" aria-label="Account sections">
+      <p class="app__nav-group">My account</p>
+      <button class="app__nav-link is-active" type="button" data-view="overview"><i data-icon="grid"></i>Overview</button>
+      <button class="app__nav-link" type="button" data-view="shipments"><i data-icon="package"></i>Shipments<span class="count" data-count="shipments">0</span></button>
+      <button class="app__nav-link" type="button" data-view="pickups"><i data-icon="truck"></i>Pickup requests<span class="count" data-count="pickups">0</span></button>
+      <button class="app__nav-link" type="button" data-view="invoices"><i data-icon="receipt"></i>Invoices<span class="count" data-count="invoices">0</span></button>
+      <p class="app__nav-group">Manage</p>
+      <button class="app__nav-link" type="button" data-view="addresses"><i data-icon="pin"></i>Addresses<span class="count" data-count="addresses">0</span></button>
+      <button class="app__nav-link" type="button" data-view="messages"><i data-icon="message"></i>Messages<span class="count" data-count="messages">0</span></button>
+      <button class="app__nav-link" type="button" data-view="settings"><i data-icon="settings"></i>Profile &amp; settings</button>
+    </nav>
+    <div class="app__sidebar-foot">
+      <a class="btn btn--gold btn--block" href="send.html"><i data-icon="send"></i>New shipment</a>
+      <a class="btn btn--outline-invert btn--block mt-2" href="track.html"><i data-icon="search"></i>Track a parcel</a>
+      <button class="btn btn--ghost-invert btn--block mt-2" type="button" id="acLogout"><i data-icon="logout"></i>Sign out</button>
+      <a class="btn btn--ghost-invert btn--block mt-1" href="index.html"><i data-icon="arrow-left"></i>Back to website</a>
+    </div>
+  </aside>
+
+  <div class="app-scrim" id="acScrim"></div>
+
+  <div class="app__main">
+    <header class="app__topbar">
+      <button class="btn btn--outline app__burger" type="button" id="acBurger" aria-label="Open menu" aria-expanded="false">
+        <i data-icon="menu"></i>
+      </button>
+      <div>
+        <h2 id="acViewTitle">Overview</h2>
+        <span class="app__topbar-sub" id="acToday">—</span>
+      </div>
+      <div class="app__user ms-auto">
+        <span class="avatar" id="acAvatar">—</span>
+        <span class="app__user-meta">
+          <span class="app__user-name" id="acName">—</span><br>
+          <span class="app__user-role" id="acCustomerId">—</span>
+        </span>
+      </div>
+    </header>
+
+    <div class="app__content">
+      <!-- OVERVIEW -->
+      <section class="app__view" data-view="overview" aria-label="Overview">
+        <div class="dash-grid dash-grid--4" id="acStats"></div>
+
+        <div class="grid grid--2 mt-5" style="align-items:start">
+          <div class="app-card">
+            <div class="app-card__head">
+              <div>
+                <h2 class="app-card__title">Recent shipments</h2>
+                <span class="app-card__sub">Latest activity across all routes</span>
+              </div>
+              <button class="link-arrow" type="button" data-view="shipments">View all</button>
+            </div>
+            <div id="acRecent"></div>
+          </div>
+
+          <div class="app-card">
+            <h2 class="app-card__title">Quick actions</h2>
+            <div class="module-grid mt-3">
+              <a class="module-tile" href="send.html"><span class="module-tile__icon"><i data-icon="send"></i></span><span class="module-tile__name">Send a parcel</span></a>
+              <a class="module-tile" href="track.html"><span class="module-tile__icon"><i data-icon="search"></i></span><span class="module-tile__name">Track &amp; trace</span></a>
+              <a class="module-tile" href="payment.html"><span class="module-tile__icon"><i data-icon="wallet"></i></span><span class="module-tile__name">Pay an invoice</span></a>
+              <a class="module-tile" href="rates.html"><span class="module-tile__icon"><i data-icon="percent"></i></span><span class="module-tile__name">Calculate a rate</span></a>
+              <a class="module-tile" href="locations.html"><span class="module-tile__icon"><i data-icon="pin"></i></span><span class="module-tile__name">Find a branch</span></a>
+              <a class="module-tile" href="contact.html"><span class="module-tile__icon"><i data-icon="headset"></i></span><span class="module-tile__name">Contact support</span></a>
+            </div>
+            <div class="alert alert--info mt-4">
+              <i data-icon="info"></i>
+              <div class="alert__body">Request a collection before 14:00 and we pick up from any Juba
+                address the same day. <button class="link-arrow" type="button" data-view="pickups">Request pickup</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid--2 mt-5" style="align-items:start">
+          <div class="app-card">
+            <h2 class="app-card__title">Shipments by status</h2>
+            <span class="app-card__sub">How your parcels are distributed right now</span>
+            <div class="chart mt-4" id="acStatusChart"></div>
+          </div>
+          <div class="app-card">
+            <h2 class="app-card__title">Spend by month</h2>
+            <span class="app-card__sub">Freight and surcharges, last 6 months</span>
+            <div class="chart mt-4" id="acSpendChart"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SHIPMENTS -->
+      <section class="app__view" data-view="shipments" aria-label="My shipments" hidden>
+        <div class="toolbar">
+          <div class="input-group">
+            <i data-icon="search"></i>
+            <input class="input" type="search" id="acShipSearch" placeholder="Search tracking number, city or recipient…" aria-label="Search shipments">
+          </div>
+          <div class="toolbar__filters">
+            <select class="select" id="acShipStatus" aria-label="Filter by status">
+              <option value="">All statuses</option>
+            </select>
+            <select class="select" id="acShipSort" aria-label="Sort shipments">
+              <option value="new">Newest first</option>
+              <option value="old">Oldest first</option>
+              <option value="status">By status</option>
+            </select>
+            <a class="btn btn--outline" href="send.html"><i data-icon="plus"></i>New shipment</a>
+          </div>
+        </div>
+        <div class="app-card" id="acShipList"></div>
+      </section>
+
+      <!-- PICKUPS -->
+      <section class="app__view" data-view="pickups" aria-label="Pickup requests" hidden>
+        <form class="app-card" id="acPickForm" novalidate>
+          <div class="app-card__head">
+            <div>
+              <h2 class="app-card__title">Request a collection</h2>
+              <span class="app-card__sub">Free within Juba metro · other areas scheduled on the next run</span>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label class="label" for="pAddr">Collection address <span class="req">*</span></label>
+              <select class="select" id="pAddr" name="address" data-rules="required" aria-describedby="pAddrErr"></select>
+              <div class="field-error" id="pAddrErr"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="pDate">Collection date <span class="req">*</span></label>
+              <input class="input" type="date" id="pDate" name="date" data-rules="required|nofuture" aria-describedby="pDateErr">
+              <div class="field-error" id="pDateErr"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="pWindow">Preferred window</label>
+              <select class="select" id="pWindow" name="window">
+                <option>Morning · 08:00–12:00</option>
+                <option selected>Afternoon · 12:00–16:00</option>
+                <option>Evening · 16:00–19:00</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="label" for="pType">What are we collecting?</label>
+              <select class="select" id="pType" name="type">
+                <option>Parcel(s)</option>
+                <option>Document(s)</option>
+                <option>Pallet / bulk</option>
+                <option>Money for a shipment</option>
+              </select>
+            </div>
+            <div class="field span-2">
+              <label class="label" for="pNotes">Notes for the driver <span class="opt">optional</span></label>
+              <textarea class="input" id="pNotes" name="notes" rows="2" placeholder="Gate code, landmark, who to ask for…"></textarea>
+            </div>
+          </div>
+          <button class="btn btn--gold mt-4" type="submit"><i data-icon="check"></i>Request collection</button>
+        </form>
+        <div class="app-card mt-5" id="acPickList"></div>
+      </section>
+
+      <!-- INVOICES -->
+      <section class="app__view" data-view="invoices" aria-label="Invoices" hidden>
+        <div class="toolbar">
+          <select class="select" id="acInvFilter" aria-label="Filter invoices by status">
+            <option value="">All invoices</option>
+          </select>
+          <div class="ms-auto flex gap-2">
+            <button class="btn btn--outline" type="button" id="acInvStatement"><i data-icon="download"></i>Statement (PDF)</button>
+          </div>
+        </div>
+        <div class="app-card">
+          <div class="table-wrap">
+            <table class="table" id="acInvTable">
+              <thead>
+                <tr>
+                  <th scope="col">Invoice</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Shipments</th>
+                  <th scope="col">Status</th>
+                  <th scope="col" class="num">Amount</th>
+                  <th scope="col"><span class="visually-hidden">Actions</span></th>
+                </tr>
+              </thead>
+              <tbody id="acInvRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADDRESSES -->
+      <section class="app__view" data-view="addresses" aria-label="Saved addresses" hidden>
+        <form class="app-card mb-5" id="acAddrForm" novalidate>
+          <div class="app-card__head">
+            <h2 class="app-card__title">Add an address</h2>
+            <span class="app-card__sub">Used to pre-fill the send form and pickup requests</span>
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label class="label" for="aLabel">Label <span class="req">*</span></label>
+              <input class="input" type="text" id="aLabel" name="label" placeholder="Home, Office, Warehouse…" data-rules="required" aria-describedby="aLabelErr">
+              <div class="field-error" id="aLabelErr"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="aCity">City <span class="req">*</span></label>
+              <select class="select" id="aCity" name="city" data-rules="required" aria-describedby="aCityErr"></select>
+              <div class="field-error" id="aCityErr"></div>
+            </div>
+            <div class="field span-2">
+              <label class="label" for="aLine">Street address <span class="req">*</span></label>
+              <input class="input" type="text" id="aLine" name="line" placeholder="Building, street, landmark" data-rules="required" aria-describedby="aLineErr">
+              <div class="field-error" id="aLineErr"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="aPhone">Contact phone <span class="req">*</span></label>
+              <input class="input" type="tel" id="aPhone" name="phone" placeholder="+211 9XX XXX XXX" data-rules="required|phone" aria-describedby="aPhoneErr">
+              <div class="field-error" id="aPhoneErr"></div>
+            </div>
+            <div class="field">
+              <span class="label">Options</span>
+              <label class="check mt-2"><input type="checkbox" id="aDefault" name="isDefault"><span>Make this my default pickup address</span></label>
+            </div>
+          </div>
+          <button class="btn btn--gold mt-4" type="submit"><i data-icon="plus"></i>Save address</button>
+        </form>
+        <div class="grid grid--2" id="acAddrList"></div>
+      </section>
+
+      <!-- MESSAGES -->
+      <section class="app__view" data-view="messages" aria-label="Messages and enquiries" hidden>
+        <div class="toolbar">
+          <p class="text-sm text-muted">Enquiries you have sent, and our replies.</p>
+          <a class="btn btn--outline ms-auto" href="contact.html"><i data-icon="plus"></i>New enquiry</a>
+        </div>
+        <div class="app-card" id="acMsgList"></div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="app__view" data-view="settings" aria-label="Profile and settings" hidden>
+        <form class="app-card" id="acProfileForm" novalidate>
+          <div class="app-card__head">
+            <h2 class="app-card__title">Personal details</h2>
+            <span class="app-card__sub">Shown on your invoices and shipping labels</span>
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label class="label" for="uName">Full name <span class="req">*</span></label>
+              <input class="input" type="text" id="uName" name="name" autocomplete="name" data-rules="required|minlen:2" aria-describedby="uNameErr">
+              <div class="field-error" id="uNameErr"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="uEmail">Email <span class="req">*</span></label>
+              <input class="input" type="email" id="uEmail" name="email" autocomplete="email" data-rules="required|email" aria-describedby="uEmailErr">
+              <div class="field-error" id="uEmailErr"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="uPhone">Phone <span class="req">*</span></label>
+              <input class="input" type="tel" id="uPhone" name="phone" autocomplete="tel" data-rules="required|phone" aria-describedby="uPhoneErr">
+              <div class="field-error" id="uPhoneErr"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="uCompany">Company <span class="opt">optional</span></label>
+              <input class="input" type="text" id="uCompany" name="company" autocomplete="organization">
+            </div>
+          </div>
+          <hr class="mt-5 mb-4">
+          <h3 class="app-card__title">Notifications</h3>
+          <div class="mt-3" style="display:grid;gap:var(--sp-2)">
+            <label class="check"><input type="checkbox" name="nEmail" checked><span>Email me shipment updates and receipts</span></label>
+            <label class="check"><input type="checkbox" name="nSms" checked><span>SMS alerts at every delivery milestone</span></label>
+            <label class="check"><input type="checkbox" name="nWa" checked><span>WhatsApp alerts for out-for-delivery only</span></label>
+            <label class="check"><input type="checkbox" name="nNews"><span>Service updates, new routes and rate changes</span></label>
+          </div>
+          <button class="btn btn--gold mt-5" type="submit"><i data-icon="check"></i>Save changes</button>
+        </form>
+
+        <form class="app-card mt-5" id="acPassForm" novalidate>
+          <h2 class="app-card__title">Change password</h2>
+          <span class="app-card__sub">At least 8 characters with a number and a capital letter</span>
+          <div class="form-grid mt-4">
+            <div class="field">
+              <label class="label" for="uOld">Current password <span class="req">*</span></label>
+              <input class="input" type="password" id="uOld" name="old" autocomplete="current-password" data-rules="required" aria-describedby="uOldErr">
+              <div class="field-error" id="uOldErr"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="uNew">New password <span class="req">*</span></label>
+              <input class="input" type="password" id="uNew" name="new" autocomplete="new-password" data-rules="required|minlen:8" aria-describedby="uNewErr">
+              <div class="field-error" id="uNewErr"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="uNew2">Confirm new password <span class="req">*</span></label>
+              <input class="input" type="password" id="uNew2" name="confirm" autocomplete="new-password" data-rules="required" aria-describedby="uNew2Err">
+              <div class="field-error" id="uNew2Err"></div>
+            </div>
+          </div>
+          <button class="btn btn--outline mt-4" type="submit"><i data-icon="key"></i>Update password</button>
+        </form>
+
+        <div class="app-card mt-5" style="border-color:var(--sp-danger);background:var(--sp-danger-bg)">
+          <h2 class="app-card__title" style="color:#8C2A22">Danger zone</h2>
+          <p class="text-sm mt-2" style="color:#8C2A22">Clearing local data removes your saved addresses,
+            messages and any shipments you created in this browser, then restores the demo seed data.</p>
+          <button class="btn btn--outline mt-3" type="button" id="acReset"><i data-icon="refresh"></i>Reset local data</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+</main>
+
+
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/account.js"></script>
+</body>
+</html>

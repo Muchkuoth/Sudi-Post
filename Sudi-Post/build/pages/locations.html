@@ -1,0 +1,142 @@
+<!--meta
+{
+  "title": "Branch &amp; Pickup Point Locations | Sudi-Post",
+  "desc": "Find a Sudi-Post location near you. Search branches, pickup points and partner locations across South Sudan, Ethiopia, Kenya and Uganda with addresses, phone numbers and opening hours.",
+  "out": "locations.html",
+  "scripts": ["assets/js/map-network.js", "assets/js/map.js", "assets/js/locations.js"]
+}
+meta-->
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li aria-current="page">Locations</li>
+      </ol>
+    </nav>
+    <div class="page-hero__inner">
+      <span class="eyebrow eyebrow--invert">Our Network</span>
+      <h1 style="margin-top:var(--sp-3)">Find a Sudi-Post Location</h1>
+      <p class="lead mt-4">Seventeen branches, pickup points and partner locations across South Sudan, Ethiopia
+         and East Africa. Search by town, filter by service, and get directions.</p>
+      <div class="page-hero__meta">
+        <span><i data-icon="map-pin"></i> 12 South Sudan locations</span>
+        <span><i data-icon="globe"></i> 5 regional &amp; partner points</span>
+        <span><i data-icon="truck"></i> Free pickup in Juba</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH -->
+<section class="section section--tight">
+  <div class="container">
+    <div class="card card--pad">
+      <h2 class="visually-hidden">Search locations</h2>
+      <div class="toolbar" style="margin-bottom:0">
+        <div class="input-group" style="flex:1 1 280px">
+          <i data-icon="search"></i>
+          <input class="input" type="search" id="locSearch" placeholder="Search by name, town, country or address…"
+                 autocomplete="off" aria-label="Search locations">
+        </div>
+        <div class="toolbar__filters">
+          <select class="select" id="locCountry" aria-label="Filter by country" style="min-width:150px">
+            <option value="">All countries</option>
+          </select>
+          <select class="select" id="locType" aria-label="Filter by location type" style="min-width:150px">
+            <option value="">All types</option>
+            <option value="Head Office">Head Office</option>
+            <option value="Branch">Branch</option>
+            <option value="Pickup Point">Pickup Point</option>
+            <option value="Partner Point">Partner Point</option>
+          </select>
+          <select class="select" id="locService" aria-label="Filter by service" style="min-width:150px">
+            <option value="">All services</option>
+          </select>
+          <label class="check" style="align-self:center;white-space:nowrap">
+            <input type="checkbox" id="locPickup"><span>Pickup available</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIRECTORY + MAP -->
+<section class="section section--tight">
+  <div class="container">
+    <div class="loc-layout">
+      <div>
+        <div class="flex items-center justify-between gap-3" style="margin-bottom:var(--sp-4)">
+          <h2 style="font-size:var(--fs-xl)" id="locCount">All locations</h2>
+          <button class="btn btn--ghost btn--sm" type="button" id="locReset"><i data-icon="refresh"></i>Reset</button>
+        </div>
+        <div class="loc-list" id="locList" role="list"></div>
+        <div id="locEmpty" hidden>
+          <div class="card card--pad">
+            <div class="empty-state">
+              <div class="empty-state__icon"><i data-icon="map-pin"></i></div>
+              <h3>No locations match your search</h3>
+              <p>We may not have a branch in that town yet. We can still collect and deliver — tell us where
+                 and we will confirm what is possible.</p>
+              <a class="btn btn--primary" href="contact.html?topic=coverage">Ask about coverage</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-panel">
+        <div class="map-panel__canvas" id="locMap" role="group" aria-roledescription="interactive map" aria-label="Map of Sudi-Post locations across South Sudan, Ethiopia, Uganda and Kenya"></div>
+        <div class="map-panel__info" id="locMapInfo"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COVERAGE -->
+<section class="section section--soft" aria-labelledby="coverage-h">
+  <div class="container">
+    <div class="heading-group heading-group--center">
+      <span class="eyebrow">Coverage</span>
+      <h2 class="section-title" id="coverage-h">Where our network reaches</h2>
+      <p class="section-sub">We deliver to every state in South Sudan and ship internationally through
+         partner networks in Africa, the Middle East and Europe.</p>
+    </div>
+    <div class="grid grid--4 mt-7" id="coverageStats"></div>
+
+    <div class="grid grid--3 mt-7">
+      <div class="card card--pad">
+        <h3 style="font-size:var(--fs-md)">South Sudan</h3>
+        <p class="text-sm text-muted mt-2">Branches and pickup points in Juba, Yei, Nimule, Torit, Kapoeta, Wau,
+           Malakal, Rumbek, Bor and Aweil — covering all ten states.</p>
+      </div>
+      <div class="card card--pad">
+        <h3 style="font-size:var(--fs-md)">Ethiopia</h3>
+        <p class="text-sm text-muted mt-2">Branches in Addis Ababa and Dire Dawa, with pickup points in
+           Bahir Dar and Hawassa. Student and family packages on a fixed weekly schedule.</p>
+      </div>
+      <div class="card card--pad">
+        <h3 style="font-size:var(--fs-md)">International</h3>
+        <p class="text-sm text-muted mt-2">Partner last-mile delivery in Kenya, Uganda and onward to 4 countries
+           through our forwarding and postal partners.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <div>
+      <span class="eyebrow eyebrow--invert">Not near a branch?</span>
+      <h2 style="margin-top:var(--sp-3)">We collect from your door</h2>
+      <p>Book a pickup online and our agent will collect from your address in Juba metro at no extra charge.</p>
+    </div>
+    <div class="cta-band__actions">
+      <a class="btn btn--gold btn--lg" href="send.html?pickup=1"><i data-icon="truck"></i>Request Pickup</a>
+      <a class="btn btn--invert btn--lg" href="contact.html?topic=coverage"><i data-icon="headset"></i>Ask about coverage</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" width="600" height="420" role="img" aria-label="Sudi-Post network across South Sudan, Ethiopia, Uganda and Kenya">
+  <defs>
+    <radialGradient id="rmBg" cx="42%" cy="34%" r="78%">
+      <stop offset="0" stop-color="#2E381F"/>
+      <stop offset="1" stop-color="#232A16"/>
+    </radialGradient>
+    <pattern id="rmGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#D8BCAB" stroke-opacity="0.10" stroke-width="0.5"/>
+    </pattern>
+    <filter id="rmGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="600" height="420" fill="url(#rmBg)"/>
+  <rect width="600" height="420" fill="url(#rmGrid)"/>
+
+  <path d="MNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN Z" fill="#3B4626"/>
+  <path d="MNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN Z" fill="#3B4626"/>
+  <path d="MNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN Z" fill="#3B4626"/>
+  <path d="MNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN Z" fill="#4A5633"/>
+
+  <polyline points="215.8,215.6 216.6,215.5 224.9,239.2 255.5,217.4 281.5,169.2 307.1,145.5 330.8,135.6 357.2,133.0" fill="none" stroke="#D8BCAB" stroke-width="2" stroke-dasharray="6 5" stroke-linecap="round" opacity="0.9"/>
+
+  <path d="MNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN Z" fill="none" stroke="#D8BCAB" stroke-opacity="0.55" stroke-width="1" stroke-linejoin="round"/>
+  <path d="MNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN Z" fill="none" stroke="#D8BCAB" stroke-opacity="0.55" stroke-width="1" stroke-linejoin="round"/>
+  <path d="MNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN Z" fill="none" stroke="#D8BCAB" stroke-opacity="0.55" stroke-width="1" stroke-linejoin="round"/>
+  <path d="MNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN LNaN NaN Z" fill="none" stroke="#D8BCAB" stroke-opacity="0.55" stroke-width="1" stroke-linejoin="round"/>
+
+  <g font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="9" font-weight="700" letter-spacing="1.6" text-anchor="middle">
+    <text x="386.0" y="125.7" fill="#D2D9BE">ETHIOPIA</text>
+    <text x="338.7" y="303.9" fill="#D2D9BE">KENYA</text>
+    <text x="230.2" y="280.1" fill="#D2D9BE">UGANDA</text>
+    <text x="177.0" y="165.3" fill="#D8BCAB">SOUTH SUDAN</text>
+  </g>
+
+  <g font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="8.5" font-weight="800" letter-spacing="0.8">
+    <circle cx="215.8" cy="215.6" r="13" fill="#D8BCAB" fill-opacity="0.16"/>
+    <circle cx="215.8" cy="215.6" r="4.5" fill="#D8BCAB" stroke="#D8BCAB" stroke-width="2"/>
+    <text x="227.8" y="219.6" fill="#FFFFFF" stroke="#232A16" stroke-opacity="0.85" stroke-width="2.4" paint-order="stroke" text-anchor="start">JUBA</text>
+    <circle cx="357.4" cy="132.9" r="4.5" fill="#232A16" stroke="#EEDDD2" stroke-width="2"/>
+    <text x="369.4" y="136.9" fill="#FFFFFF" stroke="#232A16" stroke-opacity="0.85" stroke-width="2.4" paint-order="stroke" text-anchor="start">ADDIS ABABA</text>
+    <circle cx="319.3" cy="337.3" r="4.5" fill="#232A16" stroke="#EEDDD2" stroke-width="2"/>
+    <text x="331.3" y="341.3" fill="#FFFFFF" stroke="#232A16" stroke-opacity="0.85" stroke-width="2.4" paint-order="stroke" text-anchor="start">NAIROBI</text>
+    <circle cx="235.8" cy="304.9" r="4.5" fill="#232A16" stroke="#EEDDD2" stroke-width="2"/>
+    <text x="223.8" y="308.9" fill="#FFFFFF" stroke="#232A16" stroke-opacity="0.85" stroke-width="2.4" paint-order="stroke" text-anchor="end">KAMPALA</text>
+  </g>
+</svg>

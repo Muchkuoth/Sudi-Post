@@ -1,0 +1,1267 @@
+/* ==========================================================================
+   SUDI-POST — Design System
+   Private Postal, Courier & Delivery Services
+   Author: Sudi-Post
+   --------------------------------------------------------------------------
+   1. Design tokens
+   2. Reset & base
+   3. Layout primitives
+   4. Typography
+   5. Accessibility helpers
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS
+   -------------------------------------------------------------------------- */
+:root {
+  /* Brand — Deep Navy (primary: navbar, headings, primary controls)
+     Sampled from assets/img/Website.jpg */
+  --sp-navy-950: #03172F;
+  --sp-navy-900: #05284A;
+  --sp-navy-800: #0A3A63;
+  --sp-navy-700: #0F4A65;
+  --sp-navy-600: #135D85;
+  --sp-navy-500: #18678A;
+  --sp-navy-400: #2E7C9E;
+  --sp-navy-300: #5FA3BE;
+  --sp-navy-200: #9FC8DA;
+  --sp-navy-100: #CBE3ED;
+  --sp-navy-50:  #EDF4F8;
+
+  /* Brand — Teal (accent: highlights, bands, active marks).
+     The --sp-gold-* name is historical and kept so existing rules keep
+     resolving; the values are the teal ramp sampled from Website.jpg. The
+     lightness roles are unchanged, because 500 is used as a light band that
+     dark text sits on, not as an accent colour. */
+  --sp-gold-700: #0A5A60;
+  --sp-gold-600: #0B6C73;
+  --sp-gold-500: #9BD3D6;
+  --sp-gold-400: #BDE3E5;
+  --sp-gold-300: #D6EFF0;
+  --sp-gold-200: #E7F6F7;
+  --sp-gold-100: #F2FBFB;
+
+  /* Neutrals — cooled so the canvas sits with the navy rather than against it */
+  --sp-white: #FFFFFF;
+  --sp-grey-50:  #F4F7F9;
+  --sp-grey-100: #EBF0F4;
+  --sp-grey-200: #DCE4EA;
+  --sp-grey-300: #C2CED8;
+  --sp-grey-400: #94A5B3;
+  --sp-grey-500: #647689;
+  --sp-grey-600: #4E6072;
+  --sp-grey-700: #3B4C5C;
+  --sp-grey-800: #2A3846;
+  --sp-grey-900: #16202B;
+
+  /* Teal Deep: the accent family for eyebrows and accent words sitting on the
+     light canvas. Chosen so both pass 4.5:1 on #F4F7F9 and #9BD3D6. */
+  --sp-clay-600: #0A5A60;
+  --sp-clay-700: #08474C;
+
+  /* Semantic */
+  --sp-success:      #0E7C6B;
+  --sp-success-bg:   #E4F4F1;
+  --sp-warning:      #8A6116;
+  --sp-warning-bg:   #FBF2E0;
+  --sp-danger:       #A3342A;
+  --sp-danger-bg:    #F8E8E5;
+  --sp-info:         #0F4A65;
+  --sp-info-bg:      #E7F0F5;
+  --sp-purple:       #4C5B8A;
+  --sp-purple-bg:    #EFEDF7;
+
+  /* Semantic aliases */
+  --color-bg: var(--sp-white);
+  --color-bg-soft: var(--sp-grey-50);
+  --color-surface: var(--sp-white);
+  --color-text: var(--sp-grey-900);
+  /* grey-500 only reached 4.1:1 on the light glass bands, so muted body text
+     steps down to grey-600 to clear AA at the smallest sizes used here. */
+  --color-text-muted: var(--sp-grey-600);
+  --color-text-invert: var(--sp-white);
+  --color-border: var(--sp-grey-200);
+  --color-border-strong: var(--sp-grey-300);
+  --color-primary: var(--sp-navy-700);
+  --color-primary-dark: var(--sp-navy-900);
+  --color-primary-light: var(--sp-navy-50);
+  --color-accent: var(--sp-gold-500);
+  --color-accent-dark: var(--sp-gold-600);
+  --color-accent-light: var(--sp-gold-100);
+
+  /* Section palette — the seven home page bands */
+  --band-cream:   #F4F7F9;  /* cool canvas */
+  --band-beige:   #9BD3D6;  /* teal highlight: tracking + final CTA */
+  --band-olive:   #05284A;  /* deep navy: navbar + "Why Sudi-Post" */
+  --band-card:    #FFFFFF;  /* cards sit just off the canvas */
+
+  /* Status colours (shipment states) */
+  --st-pending:      #647689;
+  --st-received:     #0A3A63;
+  --st-processing:   #135D85;
+  --st-transit:      #0E7C8C;
+  --st-outfordeliv:  #0E8288;
+  --st-delivered:    #0E7C6B;
+  --st-returned:     #647689;
+  --st-delayed:      #A3342A;
+
+  /* Typography */
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Consolas, "Liberation Mono", monospace;
+
+  --fs-xs:   0.75rem;    /* 12 */
+  --fs-sm:   0.8125rem;  /* 13 */
+  --fs-base: 0.9375rem;  /* 15 */
+  --fs-md:   1rem;       /* 16 */
+  --fs-lg:   1.125rem;   /* 18 */
+  --fs-xl:   1.375rem;   /* 22 */
+  --fs-2xl:  1.75rem;    /* 28 */
+  --fs-3xl:  2.25rem;    /* 36 */
+  --fs-4xl:  2.875rem;   /* 46 */
+  --fs-5xl:  3.75rem;    /* 60 */
+
+  --lh-tight: 1.15;
+  --lh-snug:  1.35;
+  --lh-normal: 1.6;
+  --lh-loose: 1.75;
+
+  --ls-tight: -0.02em;
+  --ls-wide: 0.02em;
+  --ls-wider: 0.08em;
+  --ls-widest: 0.16em;
+
+  /* Spacing scale */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 2.5rem;
+  --sp-8: 3rem;
+  --sp-9: 4rem;
+  --sp-10: 5rem;
+  --sp-11: 6.5rem;
+
+  /* Radii */
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+  --r-2xl: 28px;
+  --r-full: 999px;
+
+  /* Shadows — navy-tinted rather than olive, so depth reads as cool */
+  --sh-xs: 0 1px 2px rgba(5, 40, 74, 0.06);
+  --sh-sm: 0 2px 6px rgba(5, 40, 74, 0.07);
+  --sh-md: 0 6px 18px rgba(5, 40, 74, 0.08);
+  --sh-lg: 0 14px 34px rgba(5, 40, 74, 0.10);
+  --sh-xl: 0 26px 60px rgba(5, 40, 74, 0.14);
+  --sh-gold: 0 10px 26px rgba(11, 108, 115, 0.26);
+  --sh-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  /* Gradients */
+  --grad-navy: linear-gradient(135deg, var(--sp-navy-900) 0%, var(--sp-navy-800) 55%, var(--sp-navy-700) 100%);
+  --grad-navy-deep: linear-gradient(160deg, var(--sp-navy-950) 0%, var(--sp-navy-800) 60%, var(--sp-navy-700) 100%);
+  --grad-gold: linear-gradient(135deg, var(--sp-gold-300) 0%, var(--sp-gold-500) 100%);
+  /* The warmer gold used by buttons, badges and meters. It carries navy-950
+     text, so it sits a little deeper than --grad-gold. */
+  --grad-gold-warm: linear-gradient(135deg, var(--sp-gold-400) 0%, var(--sp-gold-500) 55%, var(--sp-gold-600) 100%);
+  --grad-hero: linear-gradient(168deg, #F7FAFC 0%, #EDF3F7 45%, #CFE3EC 100%);
+  --grad-line: linear-gradient(90deg, transparent, var(--sp-gold-500), transparent);
+
+  /* Layout — fluid clamp() everywhere */
+  --container: min(1200px, 100%);
+  --container-narrow: min(880px, 100%);
+  --container-wide: min(1440px, 100%);
+  --gutter: clamp(0.75rem, 3vw, 2rem);
+  --header-h: clamp(48px, 8vh, 72px);
+  --topbar-h: clamp(28px, 4vh, 38px);
+  --section-pad: clamp(2rem, 5vw, 5rem);
+  --btn-pad: clamp(0.6rem, 1.5vw, 0.95rem) clamp(1rem, 2.5vw, 2rem);
+  --sp-5: clamp(1.5rem, 3vw, 2.5rem);
+  --sp-6: clamp(2rem, 4vw, 3rem);
+  --sp-7: clamp(2.5rem, 5vw, 4rem);
+  --sp-8: clamp(3rem, 6vw, 5rem);
+  --sp-9: clamp(4rem, 8vw, 7rem);
+  --fs-xl: clamp(1.125rem, 2vw, 1.375rem);
+  --fs-2xl: clamp(1.5rem, 3vw, 1.75rem);
+  --fs-3xl: clamp(1.75rem, 3.5vw, 2.25rem);
+  --fs-4xl: clamp(2rem, 4vw, 2.875rem);
+
+  /* Motion */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --t-fast: 120ms;
+  --t-base: 200ms;
+  --t-slow: 380ms;
+
+  --z-base: 1;
+  --z-sticky: 100;
+  /* Above the floating button, below the header. The off-canvas nav is a
+     descendant of .site-header, so it can only ever paint within the
+     header's stacking context — a scrim any higher would cover the drawer
+     and the toggle that closes it. */
+  --z-scrim: 150;
+  --z-header: 200;
+  --z-drawer: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET & BASE
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+* { margin: 0; padding: 0; }
+
+/* The UA sheet hides [hidden] with a bare `display: none`, which any component
+   class that sets its own display quietly beats - so a hidden wizard button or
+   result panel stayed on screen and pushed the row wider than the viewport.
+   This has to outrank those, hence !important. */
+[hidden] { display: none !important; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  scroll-padding-top: clamp(48px, 8vh, calc(var(--header-h) + 16px));
+  tab-size: 4;
+  /* The whole type scale is in rem, so this is the one number every font size
+     on the site is measured against. It must not shrink on small screens: px
+     are density independent, so a smaller root on a phone only makes the text
+     physically smaller and harder to read - it buys no extra room, because
+     nothing else is sized in px off this. The small-screen steps live in the
+     --fs-* tokens instead, and very wide screens get their own token step. */
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: clamp(0.9375rem, 1.1vw, 1.09375rem);
+  line-height: var(--lh-normal);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-feature-settings: "kern" 1, "liga" 1, "tnum" 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+body.is-locked { overflow: hidden; }
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+img { border-style: none; }
+
+/* Icons are injected as <svg class="icon" fill="none" stroke="currentColor">.
+   A blanket `svg { fill: currentColor }` rule overrode that fill="none"
+   presentation attribute (CSS beats presentation attributes) and turned every
+   outline icon into a solid blob, so it is now scoped to the map instead. */
+.map-panel__canvas svg { fill: currentColor; }
+
+/* Without a base size, an <svg class="icon"> fell back to
+   `max-width: 100%; height: auto` and stretched to its whole container --
+   this blew the rates note icon up to 678px. Component rules below still
+   override this per usage. */
+.icon {
+  width: 18px;
+  height: 18px;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--t-fast) var(--ease);
+}
+
+a:hover { color: var(--color-primary-dark); }
+
+ul, ol { list-style: none; }
+
+address { font-style: normal; }
+
+table { border-collapse: collapse; border-spacing: 0; width: 100%; }
+
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--color-border);
+}
+
+::selection {
+  background: var(--sp-gold-300);
+  color: var(--sp-navy-900);
+}
+
+/* Focus — visible, on-brand, consistent */
+:focus-visible {
+  outline: 3px solid var(--sp-gold-500);
+  outline-offset: 2px;
+  border-radius: var(--r-xs);
+}
+
+:focus:not(:focus-visible) { outline: none; }
+
+/* --------------------------------------------------------------------------
+   3. LAYOUT PRIMITIVES
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: min(var(--container), 100%);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container--narrow { max-width: min(var(--container-narrow), 100%); }
+.container--wide { max-width: min(var(--container-wide), 100%); }
+
+.section {
+  padding-block: var(--section-pad);
+  padding-inline: clamp(1rem, 4vw, 3rem);
+  position: relative;
+}
+
+.section--tight { padding-block: clamp(2rem, 4vw, 3rem); }
+.section--loose { padding-block: clamp(4rem, 8vw, 8rem); }
+
+/* Fluid section spacing for visual rhythm */
+.section + .section { margin-block-start: 0; }
+
+.heading-group { max-width: min(720px, 100%); margin-inline: auto; }
+.heading-group .section-sub { margin-inline: auto; max-width: min(62ch, 100%); }
+.heading-group--center { margin-inline: auto; text-align: center; }
+.heading-group--center .eyebrow::before { display: none; }
+
+.section-title {
+  margin-top: var(--sp-3);
+  font-size: clamp(1.5rem, 3.5vw, var(--fs-3xl));
+  max-width: min(90%, 100%);
+}
+.section-sub {
+  margin-top: var(--sp-4);
+  max-width: min(62ch, 100%);
+  font-size: clamp(var(--fs-base), 1.2vw, var(--fs-md));
+  line-height: var(--lh-normal);
+}
+
+.section--soft { background: var(--color-bg-soft); }
+.section--navy { background: var(--grad-navy-deep); color: var(--sp-navy-50); }
+.section--navy h1, .section--navy h2, .section--navy h3 { color: var(--sp-white); }
+.section--muted { background: linear-gradient(180deg, var(--sp-navy-50) 0%, var(--sp-navy-100) 100%); }
+
+/* --- The seven home page bands ---------------------------------------------
+   1 Navbar        Deep Navy     #05284A   -> .site-header
+   2 Hero          Cool Canvas   #F4F7F9   -> .section--cream
+   3 Services      Cool Canvas   #F4F7F9   -> .section--cream
+   4 Tracking      Teal Wash     #9BD3D6   -> .section--beige
+   5 Why Sudi-Post Deep Navy     #05284A   -> .section--navy
+   6 Service Areas Cool Canvas   #F4F7F9   -> .section--cream
+   7 Final CTA     Teal Wash     #9BD3D6   -> .section--beige
+   -------------------------------------------------------------------------- */
+.section--cream { background: var(--band-cream); }
+.section--beige { background: var(--band-beige); }
+.section--olive { background: var(--band-olive); color: var(--sp-white); }
+.section--olive h1, .section--olive h2, .section--olive h3 { color: var(--sp-white); }
+.section--olive .section-sub,
+.section--olive .text-muted { color: var(--sp-navy-100); }
+
+/* Why Sudi-Post sits on Deep Olive, so its eyebrow moves from clay to Beige.
+   var(--sp-gold-600) on var(--band-olive) only reached 3.9:1. */
+.section--olive .eyebrow { color: var(--sp-gold-400); }
+.section--olive .eyebrow::before { background: var(--sp-gold-500); }
+/* Small print inside the olive band keeps a readable light tone. */
+.section--olive p,
+.section--olive .text-muted { color: var(--sp-navy-100); }
+.section--olive .text-muted { color: var(--sp-navy-200); }
+/* Cards sitting on the olive band stay opaque white so the light band text
+   above cannot leak onto them through a translucent panel. */
+.section--olive .card:not(.card--invert) {
+  background: var(--sp-white);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  color: var(--sp-grey-800);
+}
+.section--olive .card:not(.card--invert) p { color: var(--sp-grey-700); }
+/* ...and the band-level light tones stop there too, so muted text inside the
+   white card returns to the dark tone that card background needs. */
+.section--olive .card:not(.card--invert) .text-muted { color: var(--sp-grey-600); }
+
+/* On the cream canvas, cards sit just off-white rather than pure white so the
+   grid still reads as separate surfaces. */
+.section--cream .card,
+.section--beige .card { background: var(--band-card); }
+/* Service icons pick up the olive. */
+.section--cream .service-card__icon,
+.section--beige .service-card__icon { color: var(--sp-navy-700); }
+/* The beige band is a highlight, so its cards return to clean white. */
+.section--beige .card { background: var(--sp-white); }
+
+.grid { display: grid; gap: clamp(var(--sp-3), 2vw, var(--sp-6)); }
+.grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid--3 { grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); }
+.grid--4 { grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); }
+.grid--auto { grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); }
+
+/* Two-column section split: a fluid main column beside a preferred-width
+   aside. The aside width is a hint only — the track uses minmax(0, …) so
+   both columns can shrink freely, and the whole thing becomes a single
+   fluid column once the viewport can no longer hold both. Set the preferred
+   aside width per instance with --split-side. */
+.split {
+  display: grid;
+  gap: var(--sp-7);
+  align-items: center;
+  grid-template-columns: minmax(0, 1fr) minmax(0, var(--split-side, 420px));
+}
+.split--left { grid-template-columns: minmax(0, var(--split-side, 420px)) minmax(0, 1fr); }
+.split--start { align-items: start; }
+.split--tight { gap: var(--sp-6); }
+@media (max-width: 1000px) {
+  .split, .split--left {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-5);
+  }
+}
+
+.flex { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.flex-wrap { flex-wrap: wrap; }
+.gap-1 { gap: var(--sp-1); }
+.gap-2 { gap: var(--sp-2); }
+.gap-3 { gap: var(--sp-3); }
+.gap-4 { gap: var(--sp-4); }
+.gap-5 { gap: var(--sp-5); }
+.gap-6 { gap: var(--sp-6); }
+.flex-1 { flex: 1 1 auto; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.full-width { width: 100%; }
+.hidden { display: none !important; }
+.relative { position: relative; }
+.overflow-hidden { overflow: hidden; }
+
+/* Spacing scale — maps onto --sp-* tokens */
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--sp-1); }
+.mt-2 { margin-top: var(--sp-2); }
+.mt-3 { margin-top: var(--sp-3); }
+.mt-4 { margin-top: var(--sp-4); }
+.mt-5 { margin-top: var(--sp-5); }
+.mt-6 { margin-top: var(--sp-6); }
+.mt-7 { margin-top: var(--sp-7); }
+.mt-8 { margin-top: var(--sp-8); }
+.mt-9 { margin-top: var(--sp-9); }
+.stack { display: grid; gap: var(--sp-3); }
+.stack--sm { gap: var(--sp-2); }
+.stack--lg { gap: var(--sp-5); }
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--sp-1); }
+.mb-2 { margin-bottom: var(--sp-2); }
+.mb-3 { margin-bottom: var(--sp-3); }
+.mb-4 { margin-bottom: var(--sp-4); }
+.mb-5 { margin-bottom: var(--sp-5); }
+.mb-6 { margin-bottom: var(--sp-6); }
+.mb-7 { margin-bottom: var(--sp-7); }
+.mb-8 { margin-bottom: var(--sp-8); }
+.ms-1 { margin-inline-start: var(--sp-1); }
+.ms-2 { margin-inline-start: var(--sp-2); }
+.ms-3 { margin-inline-start: var(--sp-3); }
+.ms-4 { margin-inline-start: var(--sp-4); }
+.ms-auto { margin-inline-start: auto; }
+.me-1 { margin-inline-end: var(--sp-1); }
+.me-2 { margin-inline-end: var(--sp-2); }
+.me-3 { margin-inline-end: var(--sp-3); }
+.me-auto { margin-inline-end: auto; }
+.mx-auto { margin-inline: auto; }
+.p-0 { padding: 0; }
+.p-4 { padding: var(--sp-4); }
+.p-5 { padding: var(--sp-5); }
+
+/* Auto margins on block-level children of flex/grid containers */
+.mt-auto { margin-top: auto; }
+.mb-auto { margin-bottom: auto; }
+
+@media (max-width: 900px) {
+  .grid--3, .grid--4 { grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); }
+}
+@media (max-width: 620px) {
+  .grid--2, .grid--3, .grid--4, .grid--auto { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Fluid two-column layout */
+.two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 380px);
+  gap: clamp(var(--sp-4), 3vw, var(--sp-7));
+}
+@media (max-width: 768px) {
+  .two-col { grid-template-columns: minmax(0, 1fr); }
+}
+
+.sidebar-right {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+  gap: clamp(var(--sp-4), 3vw, var(--sp-6));
+}
+@media (max-width: 768px) {
+  .sidebar-right { grid-template-columns: minmax(0, 1fr); }
+}
+
+.sidebar-left {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) 1fr;
+  gap: clamp(var(--sp-4), 3vw, var(--sp-6));
+}
+@media (max-width: 768px) {
+  .sidebar-left { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Responsive spacing helpers */
+.mt-5-responsive { margin-top: clamp(var(--sp-4), 3vw, var(--sp-7)); }
+.mb-5-responsive { margin-bottom: clamp(var(--sp-4), 3vw, var(--sp-7)); }
+.p-5-responsive { padding: clamp(var(--sp-4), 3vw, var(--sp-7)); }
+.px-responsive { padding-inline: clamp(var(--sp-3), 3vw, var(--sp-6)); }
+.py-responsive { padding-block: clamp(var(--sp-4), 3vw, var(--sp-7)); }
+
+/* Fluid decorative backgrounds */
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: clamp(32px, 5vw, 56px) clamp(32px, 5vw, 56px);
+}
+
+.bg-dots {
+  background-image: radial-gradient(rgba(3, 23, 47, 0.10) 1px, transparent 1px);
+  background-size: clamp(16px, 3vw, 22px) clamp(16px, 3vw, 22px);
+}
+
+/* --------------------------------------------------------------------------
+   4. TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--sp-navy-900);
+  text-wrap: balance;
+}
+
+/* Headings are deliberately restrained: wide tracking and generous line-height
+   carry the hierarchy, so the sizes can stay small without looking timid. */
+h1 { font-size: clamp(1.5rem, 4.5vw, var(--fs-4xl)); }
+h2 { font-size: clamp(1.35rem, 3.5vw, var(--fs-3xl)); }
+h3 { font-size: clamp(1.15rem, 2.5vw, var(--fs-xl)); }
+h4 { font-size: clamp(1rem, 1.8vw, var(--fs-lg)); }
+h5 { font-size: clamp(0.875rem, 1.5vw, var(--fs-md)); }
+h6 { font-size: clamp(0.75rem, 1.2vw, var(--fs-sm)); }
+
+p { text-wrap: pretty; }
+
+.lead {
+  font-size: clamp(var(--fs-md), 1.6vw, var(--fs-lg));
+  line-height: var(--lh-loose);
+  color: var(--sp-grey-600);
+}
+
+.text-muted { color: var(--color-text-muted); }
+.text-sm { font-size: var(--fs-sm); }
+.text-xs { font-size: var(--fs-xs); }
+.text-lg { font-size: var(--fs-lg); }
+.fw-600 { font-weight: 600; }
+.fw-700 { font-weight: 700; }
+.fw-800 { font-weight: 800; }
+.mono { font-family: var(--font-mono); font-variant-ligatures: none; }
+.nowrap { white-space: nowrap; }
+.uppercase { text-transform: uppercase; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--sp-clay-700);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  background: var(--grad-gold);
+  border-radius: var(--r-full);
+}
+
+.eyebrow--invert { color: var(--sp-gold-300); }
+.eyebrow--center { justify-content: center; }
+
+.section-title { margin-top: var(--sp-3); }
+.section-sub { margin-top: var(--sp-4); max-width: min(62ch, 100%); }
+
+.heading-group { max-width: min(720px, 100%); }
+.heading-group .section-sub { margin-inline: auto; }
+.heading-group--center { margin-inline: auto; text-align: center; }
+.heading-group--center .eyebrow::before { display: none; }
+
+/* Gradient text accent */
+.text-gradient {
+  background: var(--grad-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* An accent word inside a heading that sits on a light ground. Warm Clay, not
+   gold, so it still clears 4.5:1 on the Cream and Beige bands. */
+.accent { color: var(--sp-clay-600); }
+
+/* --------------------------------------------------------------------------
+   5. ACCESSIBILITY HELPERS
+   -------------------------------------------------------------------------- */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--sp-4);
+  z-index: var(--z-toast);
+  padding: var(--sp-3) var(--sp-5);
+  background: var(--sp-navy-900);
+  color: var(--sp-white);
+  font-weight: 600;
+  border-radius: 0 0 var(--r-md) var(--r-md);
+  transition: top var(--t-base) var(--ease);
+}
+
+.skip-link:focus { top: 0; color: var(--sp-white); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Print */
+@media print {
+  .site-header, .site-footer, .cta-band, .btn { display: none !important; }
+  body { font-size: 12pt; }
+  .card { box-shadow: none; border: 1px solid #ccc; }
+}
+
+/* ==========================================================================
+    6. RESPONSIVE — ALL SIZES
+    ========================================================================== */
+
+/* Ensure proper scaling on all devices */
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: max(0px)) {
+  .container {
+    padding-inline-start: max(var(--gutter), env(safe-area-inset-left));
+    padding-inline-end: max(var(--gutter), env(safe-area-inset-right));
+  }
+  .site-header {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  .site-footer {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Touch target minimum for all interactive elements */
+a, button, input, select, textarea, [role="button"], .nav__link, .action-tile,
+.card, .option-card, .chip, .btn, .icon-btn, .fab-whatsapp, .toast-region,
+.loc-card, .pay-method, .weight-chip, .check {
+  min-height: 44px;
+}
+
+/* Ensure interactive elements are at least 44px on touch */
+@media (pointer: coarse) {
+  .nav__link {
+    padding: 0.85rem 0.85rem;
+  }
+  .btn {
+    min-height: 48px;
+    padding-block: 0.85rem;
+  }
+  /* nowrap suits the short labels (Back, Continue) but a real sentence - "Book &
+     get tracking number" - cannot fit a 320px wizard, and nowrap let it run out
+     past its own button. Below this the label wraps within the button instead. */
+  .btn { white-space: normal; }
+  .icon-btn {
+    width: 48px;
+    height: 48px;
+  }
+  .fab-whatsapp {
+    width: 64px;
+    height: 64px;
+    right: 16px;
+    bottom: 16px;
+  }
+  .action-tile {
+    min-height: 60px;
+    padding: var(--sp-4);
+  }
+  .card {
+    min-height: 44px;
+  }
+  .loc-card {
+    padding: var(--sp-5);
+  }
+}
+
+/* Extra small devices (phones under 360px) */
+@media (max-width: 360px) {
+  :root {
+    /* The spacing tightens here, but the type must not: 320px is a phone and
+       the text is already at its smallest legible size, so shrinking it again
+       only makes the page harder to read. These hold the values from the base
+       scale rather than stepping down from them. */
+    --fs-xs: 0.75rem;
+    --fs-sm: 0.8125rem;
+    --fs-base: 0.9375rem;
+    --fs-md: 1rem;
+    --sp-1: 0.2rem;
+    --sp-2: 0.35rem;
+    --sp-3: 0.5rem;
+    --sp-4: 0.75rem;
+    --sp-5: 1.25rem;
+    --sp-6: 1.5rem;
+    --sp-7: 2rem;
+  }
+  h1 { font-size: clamp(1.5rem, 5vw, var(--fs-3xl)); }
+  h2 { font-size: clamp(1.3rem, 4vw, var(--fs-xl)); }
+  .brand__name { font-size: 1.1rem; }
+  .brand__mark { width: 42px; height: 28px; }
+  .section { padding-block: clamp(2.5rem, 6vw, 5rem); }
+  .stat__value { font-size: clamp(1.5rem, 4vw, var(--fs-3xl)); }
+  .hero__trust { gap: var(--sp-2); }
+  .hero__trust-item { font-size: var(--fs-xs); }
+}
+
+/* Ensure proper text sizing on all devices */
+@media (max-width: 480px) {
+  .hero h1 { font-size: clamp(1.5rem, 6vw, var(--fs-4xl)); }
+  .section-title { font-size: clamp(1.3rem, 3.5vw, var(--fs-3xl)); }
+}
+
+/* Better text rendering on mobile */
+@media (max-width: 768px) {
+  .section-sub { max-width: 100%; }
+  .heading-group { max-width: 100%; }
+  .hero__text p { font-size: clamp(var(--fs-base), 4vw, var(--fs-lg)); }
+  .float-card { display: none; }
+}
+
+/* Ensure sticky elements work properly on mobile */
+@media (max-width: 1080px) {
+  .site-header { position: fixed; }
+}
+
+/* Smooth scrolling for all devices */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* Ensure proper text selection and focus on touch devices */
+@media (hover: none) {
+  a:hover { color: var(--color-primary); }
+  .btn:hover { transform: none; }
+  .card:hover { transform: none; }
+  .action-tile:hover { transform: none; }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 500px) {
+  .hero { padding-block: clamp(1.5rem, 3vw, 3rem); }
+  .section { padding-block: clamp(2rem, 4vw, 3rem); }
+  .nav { min-height: 48px; }
+  .site-header { --header-h: 48px; }
+}
+
+/* High DPI / Retina displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .brand__mark { image-rendering: -webkit-optimize-contrast; }
+}
+
+/* Avoid text reflow on orientation change */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Prevent font size inflation on mobile */
+@supports (-webkit-touch-callout: none) {
+  body { -webkit-text-size-adjust: 100%; }
+}
+
+/* ==========================================================================
+    FLUID DESIGN — FINAL ADJUSTMENTS
+   ========================================================================== */
+
+/* All media scales inside its container and never forces a scrollbar.
+   Intrinsic width and height attributes stay intact, so the browser can
+   reserve space before the file arrives and nothing shifts on load. */
+img, picture, video, canvas, svg, iframe {
+  max-width: 100%;
+  height: auto;
+}
+img, picture, video, canvas, svg { display: block; }
+
+/* Fluid clamp-based typography */
+h1 { font-size: clamp(1.5rem, 4.5vw, var(--fs-4xl)); }
+h2 { font-size: clamp(1.35rem, 3.5vw, var(--fs-3xl)); }
+h3 { font-size: clamp(1.15rem, 2.5vw, var(--fs-xl)); }
+p { font-size: clamp(var(--fs-base), 1.2vw, var(--fs-lg)); }
+
+/* Fluid button sizing */
+.btn {
+  min-height: 44px;
+  padding: clamp(0.6rem, 1.5vw, 0.95rem) clamp(1rem, 2.5vw, 2rem);
+  font-size: clamp(var(--fs-sm), 1vw, var(--fs-base));
+}
+
+/* Fluid container with safe area support */
+.container {
+  width: 100%;
+  max-width: min(1200px, 100%);
+  margin-inline: auto;
+  padding-inline: clamp(0.75rem, 3vw, 2rem);
+}
+
+/* Text wrapping. break-word keeps ordinary words intact but still rescues a
+   single unbreakable string; anywhere additionally lowers the min-content
+   contribution, which is what lets a narrow grid track shrink to the
+   viewport instead of being held open by its longest word. */
+h1, h2, h3, h4, h5, h6, a, span, strong, em, b, small, label, legend, th {
+  overflow-wrap: break-word;
+}
+p, li, dd, dt, td, figcaption, blockquote, .text-sm, .text-xs, .muted {
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+/* Grid and flex children are allowed to shrink below their content width.
+   Without this, one nowrap label or a wide table holds its track open and
+   pushes the whole page sideways. */
+:where(.grid, .split, .flex, [class*="-grid"], [class*="-layout"], [class*="__inner"], [class*="__body"], [class$="-row"]) > * {
+  min-width: 0;
+}
+
+/* Last-resort guard: the page never scrolls sideways. Kept as a safety net
+   rather than a fix — the layout above is expected to fit on its own. */
+html, body { overflow-x: clip; }
+
+/* Ensure all sections have fluid padding */
+.section {
+  padding-inline: clamp(1rem, 4vw, 3rem);
+}
+
+/* Fluid gap for grids */
+.grid {
+  gap: clamp(var(--sp-2), 2vw, var(--sp-6));
+}
+
+/* Ensure all cards and interactive elements are fluid */
+.card, .btn, .action-tile, .loc-card, .chip, .option-card {
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* Ensure proper scroll padding on all devices */
+html {
+  scroll-padding-top: clamp(48px, 10vh, calc(var(--header-h) + 16px));
+}
+
+/* Ensure proper zoom prevention on iOS */
+@supports (-webkit-touch-callout: none) {
+  input, select, textarea {
+    font-size: 16px;
+  }
+}
+
+/* Fluid font scale for very large screens */
+@media (min-width: 1600px) {
+  :root {
+    --fs-xs: 0.875rem;
+    --fs-sm: 0.9375rem;
+    --fs-base: 1rem;
+    --fs-md: 1.125rem;
+  }
+}
+
+/* ==========================================================================
+    FLUID — HEADER, NAVBAR & FOOTER
+    ========================================================================== */
+
+/* Fluid topbar */
+.topbar {
+  padding-inline: clamp(0.5rem, 3vw, 2rem);
+  font-size: clamp(0.6875rem, 1vw, var(--fs-xs));
+}
+.topbar__inner {
+  flex-wrap: wrap;
+  gap: clamp(var(--sp-2), 2vw, var(--sp-4));
+  min-height: var(--topbar-h);
+}
+.topbar__group { flex-wrap: wrap; gap: clamp(var(--sp-2), 2vw, var(--sp-5)); }
+.topbar__item { flex-wrap: wrap; gap: clamp(0.2rem, 1vw, 0.4rem); }
+
+/* Fluid navbar */
+.navbar {
+  flex-wrap: wrap;
+  gap: clamp(var(--sp-2), 2vw, var(--sp-5));
+  min-height: var(--header-h);
+  padding-inline: clamp(0.5rem, 3vw, 2rem);
+}
+.brand { gap: clamp(var(--sp-2), 2vw, var(--sp-3)); }
+.brand__mark {
+  width: clamp(40px, 8vw, 52px);
+  height: clamp(26px, 5vw, 34px);
+}
+.brand__name { font-size: clamp(1.1rem, 2.5vw, 1.3rem); }
+.brand__tag { font-size: clamp(0.6rem, 1.2vw, 0.7rem); }
+
+/* Fluid nav links */
+.nav__link {
+  padding: clamp(0.4rem, 1vw, 0.5rem) clamp(0.4rem, 1vw, 0.6rem);
+  font-size: clamp(0.8rem, 1.2vw, 0.875rem);
+}
+
+/* Fluid header actions */
+.header-actions {
+  gap: clamp(var(--sp-1), 1.5vw, var(--sp-2));
+}
+
+/* Fluid footer */
+.site-footer {
+  padding-inline: clamp(0.5rem, 3vw, 2rem);
+}
+.footer__top {
+  padding-block: clamp(2rem, 4vw, 4.5rem);
+  padding-inline: clamp(0.5rem, 3vw, 2rem);
+}
+.footer__grid {
+  gap: clamp(var(--sp-4), 3vw, var(--sp-6));
+}
+.footer__contact {
+  gap: clamp(var(--sp-2), 2vw, var(--sp-3));
+}
+.footer__bottom {
+  padding-block: clamp(var(--sp-3), 2vw, var(--sp-4));
+  gap: clamp(var(--sp-2), 2vw, var(--sp-3));
+}
+.footer__legal {
+  gap: clamp(var(--sp-2), 2vw, var(--sp-4));
+}
+
+/* Fluid social icons */
+.socials {
+  gap: clamp(var(--sp-1), 1.5vw, var(--sp-2));
+  margin-top: clamp(var(--sp-3), 2vw, var(--sp-5));
+}
+.socials a {
+  width: clamp(32px, 5vw, 38px);
+  height: clamp(32px, 5vw, 38px);
+}
+
+/* Fluid FAB */
+.fab-whatsapp {
+  width: clamp(44px, 8vw, 56px);
+  height: clamp(44px, 8vw, 56px);
+  right: clamp(10px, 2vw, 18px);
+  bottom: clamp(10px, 2vw, 18px);
+}
+.fab-whatsapp .icon {
+  width: clamp(20px, 3vw, 28px);
+  height: clamp(20px, 3vw, 28px);
+}
+
+/* Fluid CTA band */
+.cta-band__inner {
+  flex-wrap: wrap;
+  gap: clamp(var(--sp-3), 3vw, var(--sp-5));
+  padding-block: clamp(var(--sp-4), 3vw, var(--sp-7));
+  padding-inline: clamp(1rem, 4vw, 3rem);
+}
+.cta-band__actions {
+  flex-wrap: wrap;
+  gap: clamp(var(--sp-2), 1.5vw, var(--sp-3));
+}
+
+/* Fluid card components */
+.card {
+  padding: clamp(var(--sp-3), 2vw, var(--sp-5));
+}
+.card__body { padding: clamp(var(--sp-3), 2vw, var(--sp-5)); }
+.card__header { padding: clamp(var(--sp-3), 2vw, var(--sp-5)) clamp(var(--sp-3), 2vw, var(--sp-5)) 0; }
+.card__footer { padding: clamp(var(--sp-2), 1.5vw, var(--sp-4)); }
+
+/* Fluid stat tiles */
+.stat__value {
+  font-size: clamp(1.5rem, 4vw, var(--fs-4xl));
+}
+.stat-grid {
+  gap: clamp(var(--sp-2), 2vw, var(--sp-4));
+}
+
+/* Fluid action tiles */
+.action-tile { padding: clamp(var(--sp-2), 1.5vw, var(--sp-4)); }
+
+/* Fluid service cards */
+.service-card { padding: clamp(var(--sp-3), 2vw, var(--sp-5)); }
+.service-card__icon {
+  width: clamp(44px, 6vw, 56px);
+  height: clamp(44px, 6vw, 56px);
+  margin-bottom: clamp(var(--sp-3), 2vw, var(--sp-4));
+}
+
+/* Fluid icon boxes */
+.icon-box {
+  width: clamp(44px, 6vw, 60px);
+  height: clamp(44px, 6vw, 60px);
+}
+.icon-box .icon { width: clamp(18px, 2.5vw, 28px); height: clamp(18px, 2.5vw, 28px); }
+
+/* Fluid buttons */
+.btn--lg {
+  padding: clamp(0.7rem, 1.5vw, 0.95rem) clamp(1.2rem, 3vw, 2rem);
+  font-size: clamp(var(--fs-sm), 1.2vw, var(--fs-md));
+}
+.btn--sm {
+  padding: clamp(0.35rem, 1vw, 0.46rem) clamp(0.7rem, 1.5vw, 0.9rem);
+  font-size: clamp(var(--fs-xs), 1vw, var(--fs-sm));
+}
+
+/* Fluid input fields */
+.input, .select, .textarea {
+  padding: clamp(0.6rem, 1.5vw, 0.74rem) clamp(0.7rem, 1.5vw, 0.95rem);
+  font-size: clamp(0.9375rem, 1.1vw, var(--fs-base));
+}
+
+/* Floating cards in hero */
+.float-card {
+  padding: clamp(var(--sp-2), 1.5vw, var(--sp-3)) clamp(var(--sp-2), 1.5vw, var(--sp-4));
+}
+.float-card__icon {
+  width: clamp(28px, 4vw, 36px);
+  height: clamp(28px, 4vw, 36px);
+}
+
+/* Corridor service items */
+.corridor__service {
+  padding: clamp(var(--sp-3), 2vw, var(--sp-4));
+  gap: clamp(var(--sp-2), 1.5vw, var(--sp-3));
+}
+
+/* Track widget */
+.track-widget {
+  padding: clamp(var(--sp-3), 2vw, var(--sp-5));
+}
+
+/* Rate rows */
+.rate-row {
+  padding: clamp(var(--sp-2), 1.5vw, var(--sp-3)) clamp(var(--sp-3), 2vw, var(--sp-4));
+  gap: clamp(var(--sp-1), 1.5vw, var(--sp-3));
+}
+
+/* Footer links */
+.footer__links a {
+  gap: clamp(var(--sp-1), 1.5vw, var(--sp-2));
+  font-size: clamp(var(--fs-xs), 1vw, var(--fs-sm));
+}
+
+/* Contact cards */
+.contact-card {
+  padding: clamp(var(--sp-3), 2vw, var(--sp-4)) clamp(var(--sp-3), 2vw, var(--sp-5));
+  gap: clamp(var(--sp-2), 1.5vw, var(--sp-4));
+}
+.contact-card__icon {
+  width: clamp(36px, 5vw, 46px);
+  height: clamp(36px, 5vw, 46px);
+}
+
+/* News cards */
+.news-card__body {
+  padding: clamp(var(--sp-3), 2vw, var(--sp-4)) clamp(var(--sp-3), 2vw, var(--sp-5)) clamp(var(--sp-3), 2vw, var(--sp-5));
+}
+.news-card__media {
+  aspect-ratio: clamp(3/2, 4/3, 16/10);
+}
+
+/* Pay methods */
+.pay-method {
+  padding: clamp(var(--sp-2), 1.5vw, var(--sp-3)) clamp(var(--sp-3), 2vw, var(--sp-4));
+  gap: clamp(var(--sp-2), 1.5vw, var(--sp-3));
+}
+.pay-method__logo {
+  width: clamp(36px, 5vw, 46px);
+  height: clamp(28px, 3.5vw, 32px);
+}
+
+/* Location cards */
+.loc-card {
+  padding: clamp(var(--sp-3), 2vw, var(--sp-4));
+}
+.loc-card__name { font-size: clamp(var(--fs-sm), 1.2vw, var(--fs-md)); }
+.loc-card__addr { font-size: clamp(var(--fs-xs), 1vw, var(--fs-sm)); }
+
+/* Module tiles */
+.module-tile {
+  padding: clamp(var(--sp-3), 2vw, var(--sp-4));
+}
+.module-tile__icon {
+  width: clamp(32px, 4vw, 38px);
+  height: clamp(32px, 4vw, 38px);
+}
+
+/* Dashboard cards */
+.app-card { padding: clamp(var(--sp-3), 2vw, var(--sp-5)); }
+
+/* Driver route cards */
+.route-card { padding: clamp(var(--sp-3), 2vw, var(--sp-4)); }
+
+/* Wizard */
+.wizard__body {
+  padding: clamp(1rem, 3vw, 2.25rem);
+}
+.wizard__legend {
+  font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+  margin-bottom: clamp(var(--sp-3), 2vw, var(--sp-5));
+}
+.wizard__step {
+  padding: clamp(var(--sp-2), 1.5vw, var(--sp-3));
+  gap: clamp(var(--sp-1), 1.5vw, var(--sp-2));
+}
+
+/* Form grids */
+.form-grid,
+.form-grid--3 {
+  gap: clamp(var(--sp-2), 1.5vw, var(--sp-4));
+}
+
+/* Alerts and toasts */
+.alert {
+  padding: clamp(var(--sp-3), 2vw, var(--sp-4));
+  gap: clamp(var(--sp-2), 1.5vw, var(--sp-3));
+}
+.toast {
+  padding: clamp(var(--sp-3), 2vw, var(--sp-4));
+  gap: clamp(var(--sp-2), 1.5vw, var(--sp-3));
+}
+
+/* Option cards */
+.option-card {
+  padding: clamp(var(--sp-3), 2vw, var(--sp-4));
+}
+
+/* Badges and pills */
+.badge {
+  padding: clamp(0.15rem, 0.5vw, 0.26rem) clamp(0.4rem, 1vw, 0.68rem);
+  font-size: clamp(0.625rem, 0.8vw, var(--fs-xs));
+}
+.pill {
+  padding: clamp(0.2rem, 0.5vw, 0.28rem) clamp(0.5rem, 1.5vw, 0.75rem);
+  font-size: clamp(0.625rem, 0.8vw, var(--fs-xs));
+}
+
+/* Feature lists */
+.feature-list { gap: clamp(var(--sp-1), 1.5vw, var(--sp-3)); }
+.feature-list li {
+  gap: clamp(var(--sp-2), 1.5vw, var(--sp-3));
+  font-size: clamp(var(--fs-sm), 1.1vw, var(--fs-base));
+}
+
+/* Link arrows */
+.link-arrow { gap: clamp(var(--sp-1), 1.5vw, var(--sp-2)); }
+.link-arrow .icon { width: clamp(14px, 1.5vw, 16px); height: clamp(14px, 1.5vw, 16px); }
+
+/* Checkboxes and radios */
+.check {
+  gap: clamp(var(--sp-2), 1.5vw, var(--sp-3));
+  font-size: clamp(var(--fs-sm), 1vw, var(--fs-base));
+}
+.check input[type="checkbox"],
+.check input[type="radio"] {
+  width: clamp(16px, 2vw, 20px);
+  height: clamp(16px, 2vw, 20px);
+}
+
+/* ==========================================================================
+    7. VIEWPORT SCALE
+   --------------------------------------------------------------------------
+    Declared last so it wins over the base .container width above: the
+    measure grows with the window but stops at a comfortable line length
+    instead of stretching edge to edge on ultra-wide displays.
+   ========================================================================== */
+@media (min-width: 1440px) {
+  .container { max-width: var(--container-wide); }
+}
+@media (min-width: 1600px) {
+  .container { max-width: 1400px; }
+}
+

@@ -1,0 +1,179 @@
+<!--meta
+{
+  "title": "Luggage Shipping Rates &amp; Cost Calculator | Sudi-Post",
+  "desc": "One fixed rate: 1 KG = 23,000 SSP. Enter your luggage weight and get the total instantly, then pay securely by Mobile Money, card, bank transfer or cash on delivery.",
+  "out": "rates.html",
+  "scripts": ["assets/js/rates.js"]
+}
+meta-->
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li aria-current="page">Shipping Rates</li>
+      </ol>
+    </nav>
+    <div class="page-hero__inner">
+      <span class="eyebrow eyebrow--invert">Shipping Rates</span>
+      <h1 style="margin-top:var(--sp-3)">1 KG = 23,000 SSP</h1>
+      <p class="lead mt-4">One fixed rate for every route we serve. Enter your luggage weight, and we do the
+         multiplication for you — no zone, distance or package-type questions.</p>
+      <div class="page-hero__meta">
+        <span><i data-icon="percent"></i> No booking fee</span>
+        <span><i data-icon="package"></i> Fractional kg charged pro rata</span>
+        <span><i data-icon="shield-check"></i> Nothing charged until you pay</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CALCULATOR -->
+<section class="section" aria-labelledby="calc-h">
+  <div class="container">
+    <h2 class="visually-hidden" id="calc-h">Luggage shipping cost calculator</h2>
+
+    <div class="heading-group heading-group--center">
+      <span class="eyebrow">Luggage calculator</span>
+      <h2 class="section-title">Enter the weight. That is all.</h2>
+      <p class="section-sub">One fixed rate for every route — <strong class="mono">1 KG = 23,000 SSP</strong>.
+         Type your weight and the total appears instantly. Fractional kilograms are charged pro rata.</p>
+    </div>
+
+    <div class="calc-layout mt-7">
+      <!-- FORM -->
+      <form class="formset" id="calcForm" novalidate>
+        <div class="formset__legend">
+          <span class="formset__num"><i data-icon="package"></i></span>
+          <div>
+            <div class="formset__title">How much does your luggage weigh?</div>
+            <div class="formset__hint">This is the only thing we need. The price updates as you type.</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="weight">Luggage weight (kg) <span class="req">*</span></label>
+          <div class="input-affix">
+            <input class="input input--lg" type="number" id="weight" name="weight" value="3" min="0.5" max="500" step="0.1"
+                   inputmode="decimal" data-rules="required|min:0.5|max:500" aria-describedby="weightErr weightHelp">
+            <span class="input-affix__addon input-affix__addon--suffix">kg</span>
+          </div>
+          <div class="field-error" id="weightErr"></div>
+          <p class="field-hint" id="weightHelp">From 0.5 kg up to 500 kg. You can enter decimals, for example 3.5.</p>
+        </div>
+
+        <div class="rate-chip mt-5">
+          <span class="rate-chip__k">Fixed rate</span>
+          <span class="rate-chip__v">1 KG = 23,000 SSP</span>
+        </div>
+
+        <div class="field mt-6">
+          <span class="label" id="quickLabel">Or pick a common weight</span>
+          <div class="weight-chips" id="weightChips" role="group" aria-labelledby="quickLabel"></div>
+        </div>
+
+        <div class="rate-note">
+          <span class="rate-note__disc">
+            <img src="assets/img/we.jpg" alt="A Sudi-Post parcel ready for collection" width="180" height="180" loading="lazy" decoding="async">
+          </span>
+          <p class="text-xs text-muted">
+            <i data-icon="info"></i> One rate covers everything: sorting, handling, transport and delivery.
+            There are no zone, distance, package-type or surcharge additions on this calculator.
+          </p>
+        </div>
+      </form>
+
+      <!-- RESULT + PAYMENT -->
+      <aside class="calc-side">
+        <div id="calcResult" aria-live="polite">
+          <div class="card card--pad">
+            <div class="empty-state" style="padding:var(--sp-6) 0">
+              <div class="empty-state__icon" id="calcIcon"><img src="assets/img/logo.jpg" alt="Sudi-Post" width="44" height="28" loading="lazy" decoding="async" onerror="this.remove()"></div>
+              <h3 style="font-size:var(--fs-lg)">Your total appears here</h3>
+              <p>Enter your luggage weight on the left. We do the multiplication for you — 3.5 kg becomes
+                 80,500 SSP automatically.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- payment host, filled by rates.js once a total exists -->
+        <div id="payPanel" hidden></div>
+
+        <div class="card card--pad mt-4">
+          <h3 style="font-size:var(--fs-md)">How the price is worked out</h3>
+          <ul class="check-list mt-3">
+            <li><i data-icon="check-circle"></i><span><strong>One fixed rate.</strong> 1 kilogram always costs 23,000 SSP, on every route we serve.</span></li>
+            <li><i data-icon="check-circle"></i><span><strong>Weight times rate.</strong> Your total is simply your weight in kilograms multiplied by 23,000.</span></li>
+            <li><i data-icon="check-circle"></i><span><strong>Part kilograms count.</strong> 3.5 kg is charged as 3.5 kg, so 80,500 SSP.</span></li>
+            <li><i data-icon="check-circle"></i><span><strong>No extras added.</strong> The calculator total is the amount you actually pay.</span></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- RATE CARD -->
+<section class="section section--soft" aria-labelledby="ratecard-h">
+  <div class="container">
+    <div class="heading-group heading-group--center">
+      <span class="eyebrow">Published rates</span>
+      <h2 class="section-title" id="ratecard-h">23,000 SSP for every kilogram</h2>
+      <p class="section-sub">The same rate for any weight and any destination. Here are the most common
+         weights so you can see the arithmetic before you type anything.</p>
+    </div>
+    <div class="rate-table mt-7" id="fullRateTable"></div>
+    <p class="text-xs text-muted mt-4 text-center" id="rateFootnote"></p>
+  </div>
+</section>
+
+<!-- PAYMENT EXPLAINER -->
+<section class="section" aria-labelledby="payflow-h">
+  <div class="container">
+    <div class="heading-group heading-group--center">
+      <span class="eyebrow">Payment</span>
+      <h2 class="section-title" id="payflow-h">We only mark a payment Paid when the money arrives</h2>
+      <p class="section-sub">Pressing Pay Now starts a payment. It does not mark your invoice as paid, and it
+         does not mark it as failed either. Only the payment provider's confirmation moves the status.</p>
+    </div>
+    <ol class="payflow mt-7" id="payFlow"></ol>
+    <div class="alert alert--info mt-6">
+      <i data-icon="shield-check"></i>
+      <div class="alert__body">
+        <strong>Why it works this way.</strong> A payment is only successful when money actually reaches us.
+        If you close the payment page or your network drops, the status stays Pending and nothing is taken
+        from you — you can safely pay again later using the same reference.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section--soft" aria-labelledby="rates-faq-h">
+  <div class="container container--narrow">
+    <div class="heading-group heading-group--center">
+      <span class="eyebrow">Questions</span>
+      <h2 class="section-title" id="rates-faq-h">Rates &amp; payment questions</h2>
+    </div>
+    <div class="accordion mt-6" id="ratesFaq"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <div>
+      <span class="eyebrow eyebrow--invert">Like what you see?</span>
+      <h2 style="margin-top:var(--sp-3)">Book it now at the price you just calculated</h2>
+      <p>Send a package online, or talk to us about a corporate rate on committed volume.</p>
+    </div>
+    <div class="cta-band__actions">
+      <a class="btn btn--gold btn--lg" href="send.html"><i data-icon="send"></i>Send a Package</a>
+      <a class="btn btn--invert btn--lg" href="business.html"><i data-icon="briefcase"></i>Business Rates</a>
+      <a class="btn btn--outline-invert btn--lg" href="contact.html?topic=quote"><i data-icon="headset"></i>Custom Quote</a>
+    </div>
+  </div>
+</section>

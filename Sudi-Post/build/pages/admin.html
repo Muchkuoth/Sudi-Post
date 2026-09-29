@@ -1,0 +1,339 @@
+<!--meta
+{
+  "title": "Admin Console | Sudi-Post Operations",
+  "desc": "Sudi-Post operations console: shipments, customers, drivers, routes, pricing, invoices and performance reporting. Staff access only.",
+  "out": "admin.html",
+  "chrome": false,
+  "scripts": ["assets/js/admin.js"]
+}
+meta-->
+
+<!-- GATE -->
+<div class="empty-state" id="adGate" hidden>
+  <span class="empty-state__icon"><i data-icon="shield"></i></span>
+  <h1>Staff access only</h1>
+  <p>The operations console is restricted to Sudi-Post staff accounts.</p>
+  <a class="btn btn--gold btn--lg" href="login.html?next=admin.html"><i data-icon="login"></i>Staff sign in</a>
+  <a class="btn btn--outline btn--lg" href="index.html"><i data-icon="arrow-left"></i>Back to website</a>
+</div>
+
+<!-- CONSOLE -->
+<div class="app" id="adApp" hidden>
+  <aside class="app__sidebar" id="adSidebar">
+    <div class="app__brand">
+      <a class="brand__name" href="index.html">SUDI-POST</a>
+    </div>
+    <nav class="app__nav" aria-label="Console sections">
+      <p class="app__nav-group">Overview</p>
+      <button class="app__nav-link is-active" type="button" data-view="dashboard"><i data-icon="grid"></i>Dashboard</button>
+      <p class="app__nav-group">Operations</p>
+      <button class="app__nav-link" type="button" data-view="shipments"><i data-icon="package"></i>Shipments<span class="count" data-count="shipments">0</span></button>
+      <button class="app__nav-link" type="button" data-view="pickups"><i data-icon="truck"></i>Pickup requests<span class="count" data-count="pickups">0</span></button>
+      <button class="app__nav-link" type="button" data-view="routes"><i data-icon="route"></i>Routes &amp; schedule</button>
+      <button class="app__nav-link" type="button" data-view="locations"><i data-icon="pin"></i>Locations</button>
+      <p class="app__nav-group">People</p>
+      <button class="app__nav-link" type="button" data-view="customers"><i data-icon="users"></i>Customers<span class="count" data-count="customers">0</span></button>
+      <button class="app__nav-link" type="button" data-view="drivers"><i data-icon="truck"></i>Drivers<span class="count" data-count="drivers">0</span></button>
+      <p class="app__nav-group">Money</p>
+      <button class="app__nav-link" type="button" data-view="invoices"><i data-icon="receipt"></i>Invoices<span class="count" data-count="invoices">0</span></button>
+      <button class="app__nav-link" type="button" data-view="pricing"><i data-icon="percent"></i>Pricing</button>
+      <p class="app__nav-group">Insight</p>
+      <button class="app__nav-link" type="button" data-view="reports"><i data-icon="chart"></i>Reports</button>
+      <button class="app__nav-link" type="button" data-view="content"><i data-icon="database"></i>Content &amp; news</button>
+    </nav>
+    <div class="app__sidebar-foot">
+      <a class="btn btn--outline-invert btn--block" href="index.html"><i data-icon="arrow-left"></i>Back to website</a>
+      <button class="btn btn--ghost-invert btn--block mt-2" type="button" id="adLogout"><i data-icon="logout"></i>Sign out</button>
+    </div>
+  </aside>
+
+  <div class="app-scrim" id="adScrim"></div>
+
+  <div class="app__main">
+    <header class="app__topbar">
+      <button class="btn btn--outline app__burger" type="button" id="adBurger" aria-label="Open menu" aria-expanded="false">
+        <i data-icon="menu"></i>
+      </button>
+      <div>
+        <h2 id="adViewTitle">Dashboard</h2>
+        <span class="app__topbar-sub" id="adToday">—</span>
+      </div>
+      <div class="app__user ms-auto">
+        <span class="avatar avatar--gold" id="adAvatar">—</span>
+        <span class="app__user-meta">
+          <span class="app__user-name" id="adName">—</span><br>
+          <span class="app__user-role" id="adRole">—</span>
+        </span>
+      </div>
+    </header>
+
+    <div class="app__content">
+
+      <!-- DASHBOARD -->
+      <section class="app__view" data-view="dashboard" aria-label="Dashboard">
+        <div class="dash-grid dash-grid--4" id="adKpis"></div>
+
+        <div class="grid grid--2 mt-5" style="align-items:start">
+          <div class="app-card">
+            <div class="app-card__head">
+              <div>
+                <h2 class="app-card__title">Monthly volume</h2>
+                <span class="app-card__sub">Consignments received, last 12 months</span>
+              </div>
+            </div>
+            <div class="chart" id="adVolumeChart"></div>
+          </div>
+          <div class="app-card">
+            <div class="app-card__head">
+              <div>
+                <h2 class="app-card__title">Shipments by status</h2>
+                <span class="app-card__sub">Live position across the network</span>
+              </div>
+            </div>
+            <div class="donut" id="adStatusDonut"></div>
+          </div>
+        </div>
+
+        <div class="grid grid--2 mt-5" style="align-items:start">
+          <div class="app-card">
+            <div class="app-card__head">
+              <h2 class="app-card__title">Exceptions needing attention</h2>
+              <button class="link-arrow" type="button" data-view="shipments">All shipments</button>
+            </div>
+            <div id="adExceptions"></div>
+          </div>
+          <div class="app-card">
+            <div class="app-card__head">
+              <h2 class="app-card__title">Today's departures</h2>
+              <button class="link-arrow" type="button" data-view="routes">Route schedule</button>
+            </div>
+            <div id="adDepartures"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SHIPMENTS -->
+      <section class="app__view" data-view="shipments" aria-label="Shipments" hidden>
+        <div class="toolbar">
+          <div class="input-group">
+            <i data-icon="search"></i>
+            <input class="input" type="search" id="adShipSearch" placeholder="Tracking, customer, city…" aria-label="Search shipments">
+          </div>
+          <div class="toolbar__filters">
+            <select class="select" id="adShipStatus" aria-label="Filter by status"><option value="">All statuses</option></select>
+            <select class="select" id="adShipBranch" aria-label="Filter by branch"><option value="">All branches</option></select>
+            <button class="btn btn--outline" type="button" id="adShipExport"><i data-icon="download"></i>Export CSV</button>
+          </div>
+        </div>
+        <div class="app-card">
+          <div class="table-wrap">
+            <table class="table" id="adShipTable">
+              <thead>
+                <tr>
+                  <th scope="col">Tracking</th><th scope="col">Customer</th><th scope="col">Route</th>
+                  <th scope="col">Branch</th><th scope="col">Status</th><th scope="col">Payment</th>
+                  <th scope="col" class="num">Value</th><th scope="col"><span class="visually-hidden">Actions</span></th>
+                </tr>
+              </thead>
+              <tbody id="adShipRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PICKUPS -->
+      <section class="app__view" data-view="pickups" aria-label="Pickup requests" hidden>
+        <div class="toolbar">
+          <p class="text-sm text-muted">Collections requested through the customer portal.</p>
+        </div>
+        <div class="app-card" id="adPickList"></div>
+      </section>
+
+      <!-- ROUTES -->
+      <section class="app__view" data-view="routes" aria-label="Routes and schedule" hidden>
+        <div class="app-card mb-5">
+          <div class="app-card__head">
+            <div>
+              <h2 class="app-card__title">Corridor schedule</h2>
+              <span class="app-card__sub">Scheduled departures from Juba and Addis Ababa</span>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="table" id="adRouteTable">
+              <thead>
+                <tr><th scope="col">Day</th><th scope="col">Corridor</th><th scope="col">Departure</th><th scope="col">Notes</th></tr>
+              </thead>
+              <tbody id="adRouteRows"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="app-card">
+          <div class="app-card__head">
+            <h2 class="app-card__title">Capacity by zone</h2>
+            <span class="app-card__sub">Weekly allocation and utilisation</span>
+          </div>
+          <div class="chart" id="adZoneChart"></div>
+        </div>
+      </section>
+
+      <!-- LOCATIONS -->
+      <section class="app__view" data-view="locations" aria-label="Locations" hidden>
+        <div class="toolbar">
+          <div class="input-group">
+            <i data-icon="search"></i>
+            <input class="input" type="search" id="adLocSearch" placeholder="Search location or city…" aria-label="Search locations">
+          </div>
+          <button class="btn btn--outline ms-auto" type="button" id="adLocExport"><i data-icon="download"></i>Export CSV</button>
+        </div>
+        <div class="app-card">
+          <div class="table-wrap">
+            <table class="table" id="adLocTable">
+              <thead>
+                <tr><th scope="col">Location</th><th scope="col">Type</th><th scope="col">City</th><th scope="col">Services</th><th scope="col">Phone</th><th scope="col">Weekend</th></tr>
+              </thead>
+              <tbody id="adLocRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- CUSTOMERS -->
+      <section class="app__view" data-view="customers" aria-label="Customers" hidden>
+        <div class="toolbar">
+          <div class="input-group">
+            <i data-icon="search"></i>
+            <input class="input" type="search" id="adCustSearch" placeholder="Search name, email or company…" aria-label="Search customers">
+          </div>
+        </div>
+        <div class="app-card">
+          <div class="table-wrap">
+            <table class="table" id="adCustTable">
+              <thead>
+                <tr><th scope="col">Customer</th><th scope="col">Company</th><th scope="col">City</th><th scope="col">Shipments</th><th scope="col" class="num">Lifetime value</th><th scope="col">Contact</th></tr>
+              </thead>
+              <tbody id="adCustRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- DRIVERS -->
+      <section class="app__view" data-view="drivers" aria-label="Drivers" hidden>
+        <div class="dash-grid" id="adDriverCards"></div>
+      </section>
+
+      <!-- INVOICES -->
+      <section class="app__view" data-view="invoices" aria-label="Invoices" hidden>
+        <div class="toolbar">
+          <select class="select" id="adInvStatus" aria-label="Filter by payment status"><option value="">All invoices</option></select>
+          <div class="ms-auto flex gap-2">
+            <button class="btn btn--outline" type="button" id="adInvExport"><i data-icon="download"></i>Export CSV</button>
+          </div>
+        </div>
+        <div class="app-card">
+          <div class="table-wrap">
+            <table class="table" id="adInvTable">
+              <thead>
+                <tr><th scope="col">Invoice</th><th scope="col">Customer</th><th scope="col">Shipment</th><th scope="col">Issued</th><th scope="col">Status</th><th scope="col">Method</th><th scope="col" class="num">Amount</th></tr>
+              </thead>
+              <tbody id="adInvRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section class="app__view" data-view="pricing" aria-label="Pricing" hidden>
+        <div class="app-card mb-5">
+          <div class="app-card__head">
+            <div>
+              <h2 class="app-card__title">Zone rate card</h2>
+              <span class="app-card__sub">Base fee plus per-kilogram rate. List price before any account discount.</span>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="table" id="adZoneTable">
+              <thead>
+                <tr><th scope="col">Zone</th><th scope="col">Corridor</th><th scope="col" class="num">Base</th><th scope="col" class="num">Per kg</th><th scope="col" class="num">Transit</th><th scope="col">Services</th></tr>
+              </thead>
+              <tbody id="adZoneRows"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="grid grid--2">
+          <div class="app-card">
+            <h2 class="app-card__title">Service multipliers</h2>
+            <div class="table-wrap mt-3">
+              <table class="table table--compact">
+                <thead><tr><th scope="col">Speed</th><th scope="col" class="num">Multiplier</th><th scope="col">Promise</th></tr></thead>
+                <tbody id="adSpeedRows"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="app-card">
+            <h2 class="app-card__title">Surcharges</h2>
+            <div class="table-wrap mt-3">
+              <table class="table table--compact">
+                <thead><tr><th scope="col">Surcharge</th><th scope="col">Type</th><th scope="col" class="num">Amount</th></tr></thead>
+                <tbody id="adSurRows"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REPORTS -->
+      <section class="app__view" data-view="reports" aria-label="Reports" hidden>
+        <div class="dash-grid dash-grid--4" id="adReportKpis"></div>
+        <div class="app-card mt-5">
+          <div class="app-card__head">
+            <div>
+              <h2 class="app-card__title">Revenue by corridor</h2>
+              <span class="app-card__sub">Freight collected, last 12 months</span>
+            </div>
+          </div>
+          <div class="chart" id="adRevenueChart"></div>
+        </div>
+        <div class="app-card mt-5">
+          <div class="app-card__head">
+            <h2 class="app-card__title">Service performance</h2>
+            <span class="app-card__sub">Published figures we hold ourselves to</span>
+          </div>
+          <div class="table-wrap">
+            <table class="table" id="adPerfTable">
+              <thead><tr><th scope="col">Metric</th><th scope="col" class="num">Target</th><th scope="col" class="num">Actual</th><th scope="col">Variance</th></tr></thead>
+              <tbody id="adPerfRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTENT -->
+      <section class="app__view" data-view="content" aria-label="Content and news" hidden>
+        <div class="app-card">
+          <div class="app-card__head">
+            <div>
+              <h2 class="app-card__title">Published news</h2>
+              <span class="app-card__sub">Shown on the public News page</span>
+            </div>
+            <a class="btn btn--outline btn--sm" href="news.html"><i data-icon="external-link"></i>View public page</a>
+          </div>
+          <div class="table-wrap">
+            <table class="table" id="adNewsTable">
+              <thead><tr><th scope="col">Date</th><th scope="col">Title</th><th scope="col">Category</th><th scope="col">Author</th></tr></thead>
+              <tbody id="adNewsRows"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="app-card mt-5">
+          <div class="app-card__head">
+            <h2 class="app-card__title">Enquiries received</h2>
+            <span class="app-card__sub">Contact and business forms submitted in this browser</span>
+          </div>
+          <div id="adMessages"></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+<!-- TOP UTILITY BAR -->
+<div class="topbar">
+  <div class="container topbar__inner">
+    <div class="topbar__group">
+      <span class="topbar__item"><i data-icon="phone"></i><a href="tel:+211927100141">+211 927 100 141</a></span>
+      <span class="topbar__item"><i data-icon="clock"></i>Mon&ndash;Fri 07:30&ndash;18:30 &bull; Sat 08:00&ndash;17:00</span>
+    </div>
+    <div class="topbar__group">
+      <span class="topbar__item"><i data-icon="map-pin"></i>Juba &bull; Addis Ababa</span>
+      <a class="topbar__item" href="track.html"><i data-icon="package"></i>Track SUD-2026-000125</a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container navbar">
+      <a class="brand" href="index.html" aria-label="Sudi-Post &mdash; home">
+      <img class="brand__mark" src="assets/img/logo.jpg" alt="" width="54" height="35">
+      <span class="brand__text">
+      <span class="brand__name">SUDI<em>-</em>POST</span>
+      <span class="brand__tag">Courier &amp; Logistics</span>
+      </span>
+      </a>
+
+    <nav class="nav" id="primaryNav" aria-label="Primary">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="index.html">Home</a></li>
+        <li><a class="nav__link" href="about.html">About Us</a></li>
+
+        <li class="nav__item nav__item--menu">
+          <button type="button" class="nav__link nav__link--menu" aria-expanded="false" aria-controls="menuServices" data-menu-trigger>
+            <span>Services</span><i data-icon="chevron-down" aria-hidden="true"></i>
+          </button>
+          <ul class="nav__menu" id="menuServices">
+            <li><a class="nav__sublink" href="services.html"><i data-icon="layers" aria-hidden="true"></i><span class="nav__subtext"><span class="nav__subtitle">All Services</span><span class="nav__submeta">Postal, parcel, freight &amp; logistics</span></span></a></li>
+            <li><a class="nav__sublink" href="business.html"><i data-icon="briefcase" aria-hidden="true"></i><span class="nav__subtext"><span class="nav__subtitle">Business Solutions</span><span class="nav__submeta">Business accounts, API &amp; cargo</span></span></a></li>
+          </ul>
+        </li>
+
+        <li class="nav__item nav__item--menu">
+          <button type="button" class="nav__link nav__link--menu" aria-expanded="false" aria-controls="menuTrack" data-menu-trigger>
+            <span>Track &amp; Trace</span><i data-icon="chevron-down" aria-hidden="true"></i>
+          </button>
+          <ul class="nav__menu" id="menuTrack">
+            <li><a class="nav__sublink" href="track.html"><i data-icon="navigation" aria-hidden="true"></i><span class="nav__subtext"><span class="nav__subtitle">Track a Shipment</span><span class="nav__submeta">Live status by consignment number</span></span></a></li>
+            <li><a class="nav__sublink" href="rates.html"><i data-icon="scale" aria-hidden="true"></i><span class="nav__subtext"><span class="nav__subtitle">Shipping Rates</span><span class="nav__submeta">Fixed 23,000 SSP per kilogram</span></span></a></li>
+          </ul>
+        </li>
+
+        <li><a class="nav__link" href="news.html">News</a></li>
+
+        <li class="nav__item nav__item--menu">
+          <button type="button" class="nav__link nav__link--menu" aria-expanded="false" aria-controls="menuContact" data-menu-trigger>
+            <span>Contact</span><i data-icon="chevron-down" aria-hidden="true"></i>
+          </button>
+          <ul class="nav__menu" id="menuContact">
+            <li><a class="nav__sublink" href="contact.html"><i data-icon="headset" aria-hidden="true"></i><span class="nav__subtext"><span class="nav__subtitle">Contact Us</span><span class="nav__submeta">Head office and branch details</span></span></a></li>
+            <li><a class="nav__sublink" href="send.html"><i data-icon="send" aria-hidden="true"></i><span class="nav__subtext"><span class="nav__subtitle">Send a Parcel</span><span class="nav__submeta">Book a collection in minutes</span></span></a></li>
+            <li><a class="nav__sublink" href="locations.html"><i data-icon="map-pin" aria-hidden="true"></i><span class="nav__subtext"><span class="nav__subtitle">Locations</span><span class="nav__submeta">Every branch and pickup point</span></span></a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <div class="account-menu">
+        <button type="button" class="btn btn--outline btn--sm account-menu__trigger" aria-expanded="false" aria-controls="menuAccount" data-menu-trigger data-account-trigger>
+          <i data-icon="user" aria-hidden="true"></i><span data-account-label>Login</span><i data-icon="chevron-down" aria-hidden="true"></i>
+        </button>
+        <ul class="nav__menu nav__menu--end" id="menuAccount">
+          <li data-guest-only><a class="nav__sublink" href="login.html"><i data-icon="login" aria-hidden="true"></i><span class="nav__subtext"><span class="nav__subtitle">Sign in</span><span class="nav__submeta">Customer and staff portals</span></span></a></li>
+          <li data-guest-only><a class="nav__sublink" href="register.html"><i data-icon="user-plus" aria-hidden="true"></i><span class="nav__subtext"><span class="nav__subtitle">Create an account</span><span class="nav__submeta">Saved addresses and history</span></span></a></li>
+          <li data-auth-only hidden><a class="nav__sublink" href="account.html" data-account-link><i data-icon="user" aria-hidden="true"></i><span class="nav__subtext"><span class="nav__subtitle">My Account</span><span class="nav__submeta">Shipments, addresses and billing</span></span></a></li>
+          <li data-auth-only hidden><button type="button" class="nav__sublink nav__sublink--btn" data-sign-out><i data-icon="logout" aria-hidden="true"></i><span class="nav__subtext"><span class="nav__subtitle">Sign out</span><span class="nav__submeta">End this session</span></span></button></li>
+        </ul>
+      </div>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation menu">
+        <span class="nav-toggle__bars"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>

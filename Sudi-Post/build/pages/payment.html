@@ -1,0 +1,157 @@
+<!--meta
+{
+  "title": "Secure Payment | Sudi-Post",
+  "desc": "Pay a Sudi-Post invoice securely by Mobile Money, bank card, bank transfer, cash at branch or cash on delivery. Download your receipt and invoice instantly.",
+  "out": "payment.html",
+  "scripts": ["assets/js/payment.js"]
+}
+meta-->
+
+<section class="page-hero page-hero--sm">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li aria-current="page">Payment</li>
+      </ol>
+    </nav>
+    <div class="page-hero__inner">
+      <span class="eyebrow eyebrow--invert">Secure checkout</span>
+      <h1 style="margin-top:var(--sp-3)">Pay your invoice</h1>
+      <p class="lead mt-3">Choose how you would like to pay. You get a receipt and a PDF invoice the moment
+         the payment is confirmed.</p>
+      <div class="flex flex-wrap gap-4 mt-5 text-sm" style="color:var(--sp-navy-200)">
+        <span class="flex items-center gap-2"><i data-icon="lock"></i>Encrypted end to end</span>
+        <span class="flex items-center gap-2"><i data-icon="shield-check"></i>PCI-aligned handling</span>
+        <span class="flex items-center gap-2"><i data-icon="file-text"></i>Instant PDF receipt</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+
+    <!-- steps -->
+    <div class="pay-steps" id="paySteps" role="list" aria-label="Payment progress"></div>
+
+    <div class="pay-layout">
+      <!-- LEFT: form / status -->
+      <div>
+        <div id="payAlert"></div>
+
+        <form class="formset" id="payForm" novalidate hidden>
+          <div class="formset__legend">
+            <span class="formset__num"><i data-icon="wallet"></i></span>
+            <div>
+              <div class="formset__title">1. Choose a payment method</div>
+              <div class="formset__hint">All methods are quoted in SSP. Card and Mobile Money are confirmed
+                 instantly; transfers can take up to one business day to clear.</div>
+            </div>
+          </div>
+
+          <fieldset class="mb-5">
+            <legend class="visually-hidden">Payment method</legend>
+            <div class="grid" style="gap:var(--sp-3)" id="payMethods"></div>
+          </fieldset>
+
+          <div class="formset mt-6" id="payDetail" hidden>
+            <div class="formset__legend">
+              <span class="formset__num"><i data-icon="file-text"></i></span>
+              <div>
+                <div class="formset__title">2. Payment details</div>
+                <div class="formset__hint" id="payDetailHint"></div>
+              </div>
+            </div>
+            <div class="form-grid" id="payFields"></div>
+          </div>
+
+          <div class="check mt-5">
+            <input type="checkbox" id="payTerms" name="terms" data-rules="required" aria-describedby="payTermsErr">
+            <span>I confirm I am authorised to pay this invoice and accept the
+              <a href="terms.html">payment terms</a>. <span class="field-error is-inline" id="payTermsErr"></span></span>
+          </div>
+
+          <button class="btn btn--gold btn--lg mt-6" type="submit" id="paySubmit">
+            <i data-icon="lock"></i><span>Pay <span id="payBtnAmount"></span></span>
+          </button>
+          <p class="text-xs text-muted mt-3">Do not close this page while the payment is processing.</p>
+        </form>
+
+        <!-- processing -->
+        <div class="card card--pad text-center" id="payProcessing" hidden>
+          <span class="icon-box icon-box--lg icon-box--gold mx-auto"><i data-icon="clock"></i></span>
+          <h2 class="mt-4" style="font-size:var(--fs-xl)">Processing your payment</h2>
+          <p class="text-muted mt-2" id="payProcessingMsg">Please do not close this page…</p>
+          <div class="progress progress--navy mt-5" style="max-width:320px;margin-inline:auto">
+            <span class="progress__bar" id="payProgressBar" style="width:12%"></span>
+          </div>
+        </div>
+
+        <!-- awaiting provider confirmation -->
+        <div class="card card--pad" id="payPending" hidden>
+          <span class="icon-box icon-box--lg icon-box--gold mx-auto"><i data-icon="clock"></i></span>
+          <h2 class="mt-4" style="font-size:var(--fs-xl)">Payment pending</h2>
+          <p class="text-muted mt-2" id="payPendingMsg">
+            We have sent the payment to the provider. This invoice is <strong>not</strong> marked as paid
+            until the provider confirms that the money was received.
+          </p>
+          <div id="payPendingState" class="mt-5"></div>
+
+          <div class="pay-gateway mt-5" id="payGateway">
+            <div class="pay-gateway__head">
+              <span class="pay-gateway__tag">Payment provider</span>
+              <span class="text-xs text-muted">simulated — no live gateway connected</span>
+            </div>
+            <p class="text-sm mt-3" id="payGatewayHint">The provider has not replied yet. When it does, the status above updates.</p>
+            <div class="pay-gateway__actions mt-4">
+              <button class="btn btn--outline" type="button" id="payConfirmOk"><i data-icon="check-circle"></i>Provider confirms payment</button>
+              <button class="btn btn--ghost" type="button" id="payConfirmNo"><i data-icon="x"></i>Provider declines payment</button>
+            </div>
+          </div>
+
+          <button class="btn btn--ghost btn--block mt-4" type="button" id="payAbandon">
+            <i data-icon="x"></i>I closed the payment page without paying
+          </button>
+        </div>
+
+        <!-- success -->
+        <div class="card card--pad text-center" id="paySuccess" hidden>
+          <span class="icon-box icon-box--lg icon-box--success mx-auto"><i data-icon="check-circle"></i></span>
+          <h2 class="mt-4" style="font-size:var(--fs-2xl)">Payment received</h2>
+          <p class="lead mt-2" id="paySuccessMsg">Thank you. Your receipt is ready.</p>
+          <div class="card card--soft card--pad mt-5" style="text-align:left" id="payReceipt"></div>
+          <div class="flex flex-wrap gap-3 mt-6" style="justify-content:center">
+            <a class="btn btn--gold" id="payInvoiceLink" href="account.html?view=invoices"><i data-icon="file-text"></i>View invoice</a>
+            <button class="btn btn--outline" type="button" id="payPrint"><i data-icon="download"></i>Download receipt</button>
+            <a class="btn btn--ghost" href="account.html"><i data-icon="grid"></i>Back to account</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: order summary -->
+      <aside>
+        <div class="app-card" id="paySummary"></div>
+
+        <div class="app-card mt-4">
+          <h2 class="app-card__title">Need help with a payment?</h2>
+          <ul class="contact-list mt-3" style="font-size:var(--fs-sm)">
+            <li><i data-icon="phone"></i><span><strong>Juba office</strong><br><a href="tel:+211927100141">+211 927 100 141</a></span></li>
+            <li><i data-icon="mail"></i><span><strong>Billing</strong><br><a href="mailto:billing@sudipost.com">billing@sudipost.com</a></span></li>
+            <li><i data-icon="clock"></i><span><strong>Hours</strong><br>Mon–Sat, 08:00–18:00</span></li>
+          </ul>
+          <a class="btn btn--outline btn--block mt-3" href="contact.html?topic=payment">Report a payment issue</a>
+        </div>
+
+        <div class="app-card mt-4">
+          <h2 class="app-card__title">Other ways to pay</h2>
+          <ul class="check-list mt-3">
+            <li><span>Cash at any of our <a href="locations.html">17 branches and partner points</a></span></li>
+            <li><span>Cash on delivery, where the route allows it</span></li>
+            <li><span>Bank transfer — account details on your invoice</span></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

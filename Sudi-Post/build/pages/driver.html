@@ -1,0 +1,71 @@
+<!--meta
+{
+  "title": "Driver Route App | Sudi-Post",
+  "desc": "Sudi-Post driver app: today's manifest, sequenced stops, turn-by-turn navigation, proof of delivery with signature and photo, and cash-on-delivery collection.",
+  "out": "driver.html",
+  "chrome": false,
+  "scripts": ["assets/js/driver.js"]
+}
+meta-->
+
+<!-- GATE -->
+<div class="empty-state" id="drGate" hidden>
+  <span class="empty-state__icon"><i data-icon="truck"></i></span>
+  <h1>Driver access only</h1>
+  <p>This app is for Sudi-Post delivery agents. Sign in with your driver account.</p>
+  <a class="btn btn--gold btn--lg" href="login.html?next=driver.html"><i data-icon="login"></i>Driver sign in</a>
+  <a class="btn btn--outline btn--lg" href="index.html"><i data-icon="arrow-left"></i>Back to website</a>
+</div>
+
+<!-- DRIVER APP -->
+<div class="driver" id="drApp" hidden>
+  <header class="driver__top">
+    <span class="icon-box icon-box--sm" style="background:rgba(255,255,255,0.14);color:var(--sp-gold-300)">
+      <i data-icon="truck"></i>
+    </span>
+    <div>
+      <h2>My route</h2>
+      <span class="text-xs" id="drWho" style="color:var(--sp-navy-100)">—</span>
+    </div>
+    <span class="driver__status" id="drStatus"><span class="dot"></span>On duty</span>
+  </header>
+
+  <div class="driver__body">
+
+    <div id="drAlert"></div>
+
+    <!-- shift summary -->
+    <div class="dash-grid" id="drSummary"></div>
+
+    <!-- offline note -->
+    <div class="gps-note">
+      <i data-icon="wifi"></i>
+      <span id="drOnline">Connected. Location and delivery updates are syncing normally.</span>
+    </div>
+
+    <!-- stops -->
+    <div class="flex items-center justify-between gap-3">
+      <h2 style="font-size:var(--fs-lg)">Stops</h2>
+      <span class="pill" id="drProgress">0 / 0</span>
+    </div>
+
+    <div class="stack" id="drStops"></div>
+
+    <div class="app-card">
+      <h2 class="app-card__title">Shift summary</h2>
+      <div id="drEndSummary"></div>
+      <button class="btn btn--outline btn--block mt-4" type="button" id="drEndShift">
+        <i data-icon="check-circle"></i>End shift
+      </button>
+    </div>
+
+    <a class="btn btn--outline btn--block" href="index.html"><i data-icon="arrow-left"></i>Back to website</a>
+    <button class="btn btn--ghost btn--block mt-3" type="button" id="drLogout"><i data-icon="logout"></i>Sign out</button>
+  </div>
+
+  <!-- sticky action bar -->
+  <div class="driver__bar" id="drBar" hidden>
+    <button class="btn btn--outline flex-1" type="button" id="drCallAll"><i data-icon="phone"></i>Call depot</button>
+    <button class="btn btn--gold flex-1" type="button" id="drNext"><i data-icon="navigation"></i><span id="drNextLabel">Next stop</span></button>
+  </div>
+</div>

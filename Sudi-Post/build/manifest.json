@@ -1,0 +1,144 @@
+[
+  {
+    "out": "about.html",
+    "title": "About Sudi-Post | Our Story, Mission &amp; Team",
+    "desc": "Sudi-Post is a South Sudanese courier and logistics company connecting Juba to Addis Ababa and across East Africa. Read our story, our mission and the people who move your deliveries.",
+    "scripts": [
+      "assets/js/about.js"
+    ]
+  },
+  {
+    "out": "account.html",
+    "title": "My Account | Sudi-Post Customer Portal",
+    "desc": "Manage your Sudi-Post account: track shipments, request pickups, download invoices, save delivery addresses and manage notification preferences.",
+    "scripts": [
+      "assets/js/account.js"
+    ]
+  },
+  {
+    "out": "admin.html",
+    "title": "Admin Console | Sudi-Post Operations",
+    "desc": "Sudi-Post operations console: shipments, customers, drivers, routes, pricing, invoices and performance reporting. Staff access only.",
+    "scripts": [
+      "assets/js/admin.js"
+    ]
+  },
+  {
+    "out": "business.html",
+    "title": "Business &amp; Corporate Logistics Solutions | Sudi-Post",
+    "desc": "Corporate deliveries, bulk shipments, e-commerce fulfilment, document delivery and recurring contracts for businesses, NGOs and institutions. Request a business quote.",
+    "scripts": [
+      "assets/js/business.js"
+    ]
+  },
+  {
+    "out": "contact.html",
+    "title": "Contact Sudi-Post | Juba &amp; Addis Ababa Offices",
+    "desc": "Contact Sudi-Post for quotes, support and partnerships. Call, email, WhatsApp or visit our Juba head office and Addis Ababa branch. Support replies within one business day.",
+    "scripts": [
+      "assets/js/contact.js"
+    ]
+  },
+  {
+    "out": "driver.html",
+    "title": "Driver Route App | Sudi-Post",
+    "desc": "Sudi-Post driver app: today's manifest, sequenced stops, turn-by-turn navigation, proof of delivery with signature and photo, and cash-on-delivery collection.",
+    "scripts": [
+      "assets/js/driver.js"
+    ]
+  },
+  {
+    "out": "index.html",
+    "title": "Sudi-Post | Courier, Parcel Delivery & Logistics in South Sudan",
+    "desc": "Sudi-Post is a private postal, courier, parcel delivery and logistics company connecting South Sudan to Addis Ababa, East Africa and the world. Track shipments, calculate rates and request a pickup.",
+    "scripts": [
+      "assets/js/home.js"
+    ]
+  },
+  {
+    "out": "locations.html",
+    "title": "Branch &amp; Pickup Point Locations | Sudi-Post",
+    "desc": "Find a Sudi-Post location near you. Search branches, pickup points and partner locations across South Sudan, Ethiopia, Kenya and Uganda with addresses, phone numbers and opening hours.",
+    "scripts": [
+      "assets/js/map-network.js",
+      "assets/js/map.js",
+      "assets/js/locations.js"
+    ]
+  },
+  {
+    "out": "login.html",
+    "title": "Login | Sudi-Post Customer Portal",
+    "desc": "Sign in to the Sudi-Post customer portal to track shipments, book pickups, download invoices and manage delivery addresses. Customer, admin and driver demo logins available.",
+    "scripts": [
+      "assets/js/auth.js"
+    ]
+  },
+  {
+    "out": "news.html",
+    "title": "News &amp; Updates | Sudi-Post",
+    "desc": "Service announcements, new locations, corridor updates, customer notices and business news from Sudi-Post, South Sudan.",
+    "scripts": [
+      "assets/js/news.js"
+    ]
+  },
+  {
+    "out": "payment.html",
+    "title": "Secure Payment | Sudi-Post",
+    "desc": "Pay a Sudi-Post invoice securely by Mobile Money, bank card, bank transfer, cash at branch or cash on delivery. Download your receipt and invoice instantly.",
+    "scripts": [
+      "assets/js/payment.js"
+    ]
+  },
+  {
+    "out": "privacy.html",
+    "title": "Privacy Policy | Sudi-Post",
+    "desc": "How Sudi-Post collects, uses, stores and protects your personal data, including shipment records, tracking, payments and account information. Read our full privacy policy.",
+    "scripts": []
+  },
+  {
+    "out": "rates.html",
+    "title": "Luggage Shipping Rates &amp; Cost Calculator | Sudi-Post",
+    "desc": "One fixed rate: 1 KG = 23,000 SSP. Enter your luggage weight and get the total instantly, then pay securely by Mobile Money, card, bank transfer or cash on delivery.",
+    "scripts": [
+      "assets/js/rates.js"
+    ]
+  },
+  {
+    "out": "register.html",
+    "title": "Create an Account | Sudi-Post",
+    "desc": "Create a free Sudi-Post customer account to book pickups, track every shipment, save addresses and download invoices. Registration takes under a minute.",
+    "scripts": [
+      "assets/js/auth.js"
+    ]
+  },
+  {
+    "out": "send.html",
+    "title": "Send a Package | Book a Sudi-Post Shipment",
+    "desc": "Book a Sudi-Post shipment online in four steps: choose a service, pick up or drop off, enter recipient details and pay. Get an instant tracking number and proof of delivery.",
+    "scripts": [
+      "assets/js/send.js"
+    ]
+  },
+  {
+    "out": "services.html",
+    "title": "Courier &amp; Parcel Delivery Services | Sudi-Post",
+    "desc": "Domestic, international, express, door-to-door, document, parcel, e-commerce, business logistics and student package delivery services from Sudi-Post, South Sudan.",
+    "scripts": [
+      "assets/js/services.js"
+    ]
+  },
+  {
+    "out": "terms.html",
+    "title": "Terms of Service | Sudi-Post",
+    "desc": "The terms that govern your use of Sudi-Post: our services, prohibited items, quotations and charges, delivery commitments, liability, claims and dispute resolution.",
+    "scripts": []
+  },
+  {
+    "out": "track.html",
+    "title": "Track &amp; Trace Your Shipment | Sudi-Post",
+    "desc": "Track any Sudi-Post shipment in real time. Enter your tracking number such as SUD-2026-000125 to see the sender, receiver, route, current status, estimated delivery date and full shipment history.",
+    "scripts": [
+      "assets/js/track.js"
+    ]
+  }
+]
